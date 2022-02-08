@@ -25,6 +25,7 @@ function bePositive($arr) {
             }
         }
 
+        // checks if value is negative
         if ($intValue < 0) {
             $intValue *= -1;
             echo "$intValue, ";

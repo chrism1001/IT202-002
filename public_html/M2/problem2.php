@@ -10,7 +10,7 @@ function getTotal($arr) {
     //TODO do rounding stuff here
 
     for ($i = 0; $i < count($arr); $i++) {
-        
+        $total += $arr[$i];
     }
 
     echo "The total is " . var_export($total, true);

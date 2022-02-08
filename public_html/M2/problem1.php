@@ -11,7 +11,7 @@ function processArray($arr) {
 
     for ($i = 0; $i < count($arr); $i++) {
         if ($arr[$i] % 2 != 0) {
-            echo $arr[$i];
+            echo $arr[$i] + ", ";
         }
     }
 

@@ -13,11 +13,7 @@ function getTotal($arr) {
     }
 
     //TODO do rounding stuff here
-    if (($total/.001)%10 > 5) {
-        $total += .01;
-    }
-    //$total = ($total/.01)%10;
-    //$total = round($total, 2);
+    $total = round($total, 2);
 
     echo "The total is " . var_export($total, true);
 }

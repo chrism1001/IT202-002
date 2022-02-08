@@ -12,8 +12,10 @@ function bePositive($arr) {
     for ($i = 0; $i < count($arr); $i++) {
         // checks if element in array is string
         // converts string to integer
-        if (is_string($arr[$i])) {
-            $intValue = (int) $arr[$i];
+        $intValue = $arr[$i];
+
+        if (is_string($intValue)) {
+            $intValue = (int) $intValue;
 
             if ($intValue < 0) {
                 $intValue *= -1;
@@ -23,7 +25,12 @@ function bePositive($arr) {
             }
         }
 
-        
+        if ($intValue < 0) {
+            $intValue *= -1;
+            echo "$intValue, ";
+        } else {
+            echo "$intValue, ";
+        }
     }
 
 }

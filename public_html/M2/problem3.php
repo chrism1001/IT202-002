@@ -10,20 +10,7 @@ function bePositive($arr) {
     //TODO use echo to output all of the values as positive (even if they were originally positive)
 
     for ($i = 0; $i < count($arr); $i++) {
-        // checks if element in array is string
-        // converts string to integer
         $intValue = $arr[$i];
-
-        if (is_string($intValue)) {
-            $intValue = (int) $intValue;
-
-            if ($intValue < 0) {
-                $intValue *= -1;
-                echo "$intValue, ";
-            } else {
-                echo "$intValue, ";
-            }
-        }
 
         // checks if value is negative
         if ($intValue < 0) {

@@ -9,6 +9,10 @@ function bePositive($arr) {
     echo "<br>Positive output:<br>";
     //TODO use echo to output all of the values as positive (even if they were originally positive)
 
+    for ($i = 0; $i < count($arr); $i++) {
+        
+    }
+
 }
 echo "Problem 3: Be Positive<br>";
 ?>

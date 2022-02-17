@@ -21,18 +21,28 @@
     <style>
         /* TODO: make edits here */
         
-        /* make navbar horizontal and removing list markers */
+        /* make navbar horizontal, remove list markers, add background color */
         nav ul li {
             list-style-type: none;
             display: inline;
             background-color: #add8e6;
         }
 
-        /* changes the color of the navbar background on mouseover */
+        /* changes the color of the navbar background and links on mouseover */
         li a:hover {
-            background-color: #ffff99;
+            background-color: #000;
+            color: #add8e6;
         }
 
+        /* change the bullet points of the challenges list to checkmarks */
+        ul > li > ul {
+            list-style-type: '✓';
+        }
+
+        /* capitalizes all words in h1 and a tags */
+        h1, a {
+            text-transform: capitalize;
+        }
 
     </style>
     <!-- make the necessary edits above this line -->

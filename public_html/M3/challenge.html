@@ -4,29 +4,35 @@
 <head>
     <title>Problem 1</title>
     <meta charset="utf-8" />
+
     <script>
+        const element = document.getElementsByTagName("a");
         window.addEventListener("load", () => {
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
         });
+
+        window.addEventListener("click", getCurrentSelection);
+
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
-                //TODO: add code for processing the current selection 
+                //TODO: add code for processing the current selection
+            
 
                 //Note: likely you'll want to call updateCurrentPage towards the end
             }, 100);
         }
     </script>
+
     <style>
         /* TODO: make edits here */
         
-
         /* make navbar horizontal */
         nav ul li {
             display: inline;
-            margin-left: 20px;
-            margin-right: 20px;
+            padding-right: 20px;
+            padding-left: 20px;
         }
 
         /* remove list markers, add background color */
@@ -41,7 +47,7 @@
         li a:hover {
             background-color: #000;
             color: #add8e6;
-            padding: 20px;
+            
         }
 
         /* change the bullet points of the challenges list to checkmarks */
@@ -54,15 +60,14 @@
             text-transform: capitalize;
         }
 
-        /* makes items in navbar center of the page */
-        nav {
-            text-align: center;
-        }
-
         h1, h3 {
             font-size: 20px;
             font-style: italic;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        body h1 {
+            background-color: red;
         }
 
     </style>

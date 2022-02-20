@@ -7,15 +7,19 @@
 
     <script>
         window.addEventListener("click", () => {
-            console.log(event.target.innerText);
+            console.log(String(event.target.localName));
             //TODO: add any extra onload processing you may need here
         });
 
-        function getCurrentSelection() {
+        window.addEventListener("click", getCurrentSelection);
+        function getCurrentSelection(event) {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
 
+            if (String(event.target.localName) == "a") {
+                console.log(event);
+            }
 
                 //Note: likely you'll want to call updateCurrentPage towards the end
             }, 100);

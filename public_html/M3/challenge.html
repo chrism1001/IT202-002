@@ -6,22 +6,17 @@
     <meta charset="utf-8" />
 
     <script>
-        let selections = document.getElementsByTagName("a");
-
-        console.log(selections);
-
-        window.addEventListener("load", (event) => {
+        window.addEventListener("load", () => {
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
+            //console.log(event);
 
-            console.log(event.target);
-
-            for (let i = 0; i < selections.length; i++) {
-                if (event.target.baseURI === selections[i].baseURI) {
-                    console.log(event.target.baseURI);
-                    console.log(selections[i].innerText);
-                    //updateCurrentPage(selections[i].innerText)
-                }
+            const anchorTags = document.getElementsByTagName("a");
+            for (let i = 0; i < anchorTags.length; i++) {
+                anchorTags[i].addEventListener("click", () => {
+                    updateCurrentPage(event.target.innerText);
+                    console.log(event);
+                });
             }
         });
 
@@ -31,15 +26,11 @@
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
 
-                //console.log(event.target);
-                //console.log(event.target.title);
-
-                //if (e)
                 if (String(event.target.localName) == "a") {
                     const selection = event.target.innerText;
+                    
+                    //console.log(selection);
                     updateCurrentPage(selection);
-
-                    //return selection;
                 }
 
                 //Note: likely you'll want to call updateCurrentPage towards the end

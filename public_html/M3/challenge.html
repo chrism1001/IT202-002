@@ -18,7 +18,8 @@
                 //TODO: add code for processing the current selection
 
             if (String(event.target.localName) == "a") {
-                console.log(event);
+                const selection = event.target.innerText;
+                console.log(selection);
             }
 
                 //Note: likely you'll want to call updateCurrentPage towards the end

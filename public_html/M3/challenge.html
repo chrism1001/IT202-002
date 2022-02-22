@@ -13,10 +13,7 @@
 
             const anchorTags = document.getElementsByTagName("a");
             for (let i = 0; i < anchorTags.length; i++) {
-                anchorTags[i].addEventListener("click", (event) => {
-                    console.log(event);
-                    updateCurrentPage(event.target.innerText);
-                });
+                anchorTags[i].addEventListener("click", getCurrentSelection);
             }
         });
 
@@ -26,12 +23,8 @@
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
 
-                // if (String(event.target.localName) == "a") {
-                //     const selection = event.target.innerText;
-                    
-                //     //console.log(selection);
-                //     updateCurrentPage(selection);
-                // }
+                console.log(event);
+                updateCurrentPage(event.target.innerText);
 
                 //Note: likely you'll want to call updateCurrentPage towards the end
             }, 100);

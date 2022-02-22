@@ -1,3 +1,8 @@
+<?php
+    require(__DIR__ . "/../..lib/functions.php");
+?>
+
+
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
@@ -23,4 +28,14 @@
 </script>
 <?php
  //TODO 2: add PHP Code
+if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
+    // get the email key from $_POST, default to "" if not set, and return the value
+    $email = se($_POST, "email", "", false);
+    // same as abot but for password and confirm
+    $password = se($_POST, "password", "", false);
+    $confirm = se($_POST, "confirm", "", false);
+
+//TODO 3: validate/use
+
+}
 ?>

@@ -35,7 +35,34 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     $password = se($_POST, "password", "", false);
     $confirm = se($_POST, "confirm", "", false);
 
-//TODO 3: validate/use
+    //TODO 3: validate/use
+    // sanitize
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    // validate
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email address";
+        $hasError = true;
+    }
 
+    $hasError = false;
+    if (empty($email)) {
+        echo "Email must not be empty";
+        $hasError = true;
+    }
+    if (empty($password)) {
+        echo "Password must not be empty";
+        $hasError = true;
+    }
+    if (empty($confirm)) {
+        echo "Confirm password must not be empty";
+        $hasError = true;
+    }
+    if (strlen($password) > 0 && $password !== $confirm) {
+        echo "Passwords must match";
+        $hasError = true;
+    }
+    if (!$hasError) {
+        echo "Welcome, $email";
+    }
 }
 ?>

@@ -36,17 +36,16 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     $confirm = se($_POST, "confirm", "", false);
 
     //TODO 3: validate/use
+    $hasError = false;
+    if (empty($email)) {
+        echo "Email must not be empty";
+        $hasError = true;
+    }
     // sanitize
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     // validate
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "Invalid email address";
-        $hasError = true;
-    }
-
-    $hasError = false;
-    if (empty($email)) {
-        echo "Email must not be empty";
         $hasError = true;
     }
     if (empty($password)) {
@@ -63,6 +62,17 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     }
     if (!$hasError) {
         echo "Welcome, $email";
+        //TODO 4
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $db = getDB();
+        $stmt = $db->prepare("INSERT INTO Users (email, password) VALUE (:email, :password)");
+        try {
+            $stmt->execute([":email" => $email, ":password" => $hash]);
+            echo "Successfully registerd!";
+        } catch (Exception $e) {
+            echo "There was a sproblem registering";
+            "<pro>" . var_export($e, true) . "</pre>";
+        }
     }
 }
 ?>

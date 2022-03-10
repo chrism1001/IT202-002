@@ -27,7 +27,6 @@
 if (isset($_POST["email"]) && isset($_POST["password"])) {
     // get the email key from $_POST, default to "" if not set, and return the value
     $email = se($_POST, "email", "", false);
-    // same as abot but for password and confirm
     $password = se($_POST, "password", "", false);
 
     //TODO 3: validate/use
@@ -64,6 +63,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                     unset($user["password"]);
                     if (password_verify($password, $hash)) {
                         echo "Welcome $email";
+                        $_SESSION["user"] = $user;
+                        die(header("Location: home.php"));
                     } else {
                         echo "Invalid password";
                     }

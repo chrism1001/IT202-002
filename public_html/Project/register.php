@@ -65,7 +65,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         $hasError = true;
     }
     if (!$hasError) {
-        echo "Welcome, $email";
+        echo "Welcome, $email <br>";
         //TODO 4
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
@@ -74,7 +74,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
             $stmt->execute([":email" => $email, ":password" => $hash]);
             echo "Successfully registered! <br>";
         } catch (Exception $e) {
-            echo "There was a sproblem registering <br>";
+            echo "There was a problem registering <br>";
             "<pro>" . var_export($e, true) . "</pre>";
         }
     }

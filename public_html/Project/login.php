@@ -12,11 +12,7 @@
         <label for="pw">Password</label>
         <input type="password" id="pw" name="password" required minlength="8" />
     </div>
-    <div>
-        <label for="confirm">Confirm</label>
-        <input type="password" name="confirm" required minlength="8" />
-    </div>
-    <input type="submit" value="Register" />
+    <input type="submit" value="Login" />
 </form>
 <script>
     function validate(form) {
@@ -28,12 +24,10 @@
 </script>
 <?php
  //TODO 2: add PHP Code
-if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm"])) {
+if (isset($_POST["email"]) && isset($_POST["password"])) {
     // get the email key from $_POST, default to "" if not set, and return the value
     $email = se($_POST, "email", "", false);
-    // same as abot but for password and confirm
     $password = se($_POST, "password", "", false);
-    $confirm = se($_POST, "confirm", "", false);
 
     //TODO 3: validate/use
     $hasError = false;
@@ -52,30 +46,34 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
         echo "Password must not be empty <br>";
         $hasError = true;
     }
-    if (empty($confirm)) {
-        echo "Confirm password must not be empty <br>";
-        $hasError = true;
-    }
     if (strlen($password) < 8) {
         echo "Password must be at least 8 characters long <br>";
         $hasError = true;
     }
-    if (strlen($password) > 0 && $password !== $confirm) {
-        echo "Passwords must match <br>";
-        $hasError = true;
-    }
     if (!$hasError) {
-        echo "Welcome, $email <br>";
         //TODO 4
-        $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
-        $stmt = $db->prepare("INSERT INTO Users (email, password) VALUE (:email, :password)");
+        $stmt = $db->prepare("SELECT email, password from Users where email = :email");
         try {
-            $stmt->execute([":email" => $email, ":password" => $hash]);
-            echo "Successfully registered! <br>";
+            $r = $stmt->execute([":email" => $email]);
+            if ($r) {
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($user) {
+                    $hash = $user["password"];
+                    unset($user["password"]);
+                    if (password_verify($password, $hash)) {
+                        echo "Welcome $email";
+                        $_SESSION["user"] = $user;
+                        die(header("Location: home.php"));
+                    } else {
+                        echo "Invalid password";
+                    }
+                } else {
+                    echo "Email not found";
+                }
+            }
         } catch (Exception $e) {
-            echo "There was a problem registering <br>";
-            "<pro>" . var_export($e, true) . "</pre>";
+            echo "<pre>" . var_export($e, true) . "</pre>";
         }
     }
 }

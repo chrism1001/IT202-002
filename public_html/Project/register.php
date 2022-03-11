@@ -38,45 +38,46 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     //TODO 3: validate/use
     $hasError = false;
     if (empty($email)) {
-        echo "Email must not be empty <br>";
+        flash("Email must not be empty <br>");
         $hasError = true;
     }
     // sanitize
     $email = sanitize_email($email);
     // validate
     if (!is_valid_email($email)) {
-        echo "Invalid email address <br>";
+        flash("Invalid email address <br>");
         $hasError = true;
     }
     if (empty($password)) {
-        echo "Password must not be empty <br>";
+        flash("Password must not be empty <br>");
         $hasError = true;
     }
     if (empty($confirm)) {
-        echo "Confirm password must not be empty <br>";
+        flash("Confirm password must not be empty <br>");
         $hasError = true;
     }
     if (strlen($password) < 8) {
-        echo "Password must be at least 8 characters long <br>";
+        flash("Password must be at least 8 characters long <br>");
         $hasError = true;
     }
     if (strlen($password) > 0 && $password !== $confirm) {
-        echo "Passwords must match <br>";
+        flash("Passwords must match <br>");
         $hasError = true;
     }
     if (!$hasError) {
-        echo "Welcome, $email <br>";
+        flash("Welcome, $email <br>");
         //TODO 4
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $db = getDB();
         $stmt = $db->prepare("INSERT INTO Users (email, password) VALUE (:email, :password)");
         try {
             $stmt->execute([":email" => $email, ":password" => $hash]);
-            echo "Successfully registered! <br>";
+            flash("Successfully registered! <br>");
         } catch (Exception $e) {
-            echo "There was a problem registering <br>";
+            flash("There was a problem registering <br>");
             "<pro>" . var_export($e, true) . "</pre>";
         }
     }
 }
 ?>
+<?php require_once(__DIR__."/../../partials/flash.php"); ?>

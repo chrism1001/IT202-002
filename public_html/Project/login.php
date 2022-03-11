@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__ . "/../../partials/nav.php");
+require_once(__DIR__ . "/../../partials/nav.php");
 ?>
 
 
@@ -23,37 +23,41 @@
     }
 </script>
 <?php
- //TODO 2: add PHP Code
+//TODO 2: add PHP Code
 if (isset($_POST["email"]) && isset($_POST["password"])) {
-    // get the email key from $_POST, default to "" if not set, and return the value
-    $email = se($_POST, "email", "", false);
-    $password = se($_POST, "password", "", false);
+    $email = se($_POST, "email", "", false); //$_POST["email"];
+    $password = se($_POST, "password", "", false); //$_POST["password"];
 
-    //TODO 3: validate/use
+    //TODO 3
     $hasError = false;
     if (empty($email)) {
-        flash("Email must not be empty");
+        flash("Email must be provided <br>");
         $hasError = true;
     }
-    // sanitize
+    //sanitize
+    //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $email = sanitize_email($email);
-    // validate
+    //validate
+    /*if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        flash("Please enter a valid email <br>");
+        $hasError = true;
+    }*/
     if (!is_valid_email($email)) {
-        flash("Invalid email address");
+        flash("Please enter a valid email <br>");
         $hasError = true;
     }
     if (empty($password)) {
-        flash("Password must not be empty");
+        flash("Password must be provided <br>");
         $hasError = true;
     }
     if (strlen($password) < 8) {
-        flash("Password must be at least 8 characters long");
+        flash("Password must be at least 8 characters long <br>");
         $hasError = true;
     }
     if (!$hasError) {
         //TODO 4
         $db = getDB();
-        $stmt = $db->prepare("SELECT email, password from Users where email = :email");
+        $stmt = $db->prepare("SELECT id, email, username, password from Users where email = :email");
         try {
             $r = $stmt->execute([":email" => $email]);
             if ($r) {
@@ -78,4 +82,4 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     }
 }
 ?>
-<?php require_once(__DIR__."/../../partials/flash.php"); ?>
+<?php require_once(__DIR__ . "/../../partials/flash.php"); ?>

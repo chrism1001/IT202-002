@@ -49,7 +49,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["confirm
     //     echo "Invalid email address <br>";
     //     $hasError = true;
     // }
-    if (!is_valid_email()) {
+    if (!is_valid_email($email)) {
         echo "Invalid email address <br>";
         $hasError = true;
     }

@@ -32,22 +32,22 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     //TODO 3: validate/use
     $hasError = false;
     if (empty($email)) {
-        flash("Email must not be empty <br>");
+        flash("Email must not be empty");
         $hasError = true;
     }
     // sanitize
     $email = sanitize_email($email);
     // validate
     if (!is_valid_email($email)) {
-        flash("Invalid email address <br>");
+        flash("Invalid email address");
         $hasError = true;
     }
     if (empty($password)) {
-        flash("Password must not be empty <br>");
+        flash("Password must not be empty");
         $hasError = true;
     }
     if (strlen($password) < 8) {
-        flash("Password must be at least 8 characters long <br>");
+        flash("Password must be at least 8 characters long");
         $hasError = true;
     }
     if (!$hasError) {

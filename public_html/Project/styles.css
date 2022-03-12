@@ -1,0 +1,67 @@
+.alert-success {
+    background-color: green
+}
+
+.alert-warning {
+    background-color: yellow;
+}
+
+.alert-danger {
+    background-color: red;
+}
+
+.alert-info {
+    background-color: teal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+li, a {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: black;
+    padding: 20px;
+    color: yellow;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 20px;
+    background-color: black;
+}
+
+div {
+    margin: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+li a:hover {
+    padding: 20px;
+    background-color: yellow;
+    color: black;
+}
+
+input[type=submit] {
+    position: relative;
+    margin-left: 50px;
+    background-color: yellow;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    width: 200px;
+    height: 25px;
+}

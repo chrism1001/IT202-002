@@ -28,6 +28,7 @@ require(__DIR__ . "/../../partials/nav.php");
         // checks if email/username input is valid
         // first will check whether the input contains an @ character then will validate the email using regex
         // if it doesnt contain an @, it will validate the username
+        // if either email or username fail it will reset the fields
         var email_input = document.getElementById("email").value;
         if (email_input.length == 0) {
             flash("Email/Username field cannot be empty");

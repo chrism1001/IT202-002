@@ -23,26 +23,40 @@ require(__DIR__ . "/../../partials/nav.php");
         // valid username
         const username_reg = /^[a-z0-9_-]{3,16}$/;
         
+        var has_error = true;
 
+        // checks if email/username input is valid
+        // first will check whether the input contains an @ character then will validate the email using regex
+        // if it doesnt contain an @, it will validate the username
         var email_input = document.getElementById("email").value;
         if (email_input.length == 0) {
-            flash("Username/Email field cannot be empty");
+            flash("Email/Username field cannot be empty");
             has_error = false;
         }
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
+                document.getElementById("email").value = "";
+                document.getElementById("pw").value = "";
+                has_error = false;
+            }
+        } else {
+            if (!username_reg.test(email_input)) {
+                flash("Not a valid username");
+                document.getElementById("email").value = "";
+                document.getElementById("pw").value = "";
                 has_error = false;
             }
         }
 
+        // validates password input is correct length
         var password_input = document.getElementById("pw").value;
         console.log(password_input);
         if (pw.length == 0) {
             flash("Password field cannot be empty");
             has_error = false;
         }
-        if (pw.length < 8) {
+        if (String(pw).length < 8) {
             flash("Password is too short");
             has_error = false;
         }

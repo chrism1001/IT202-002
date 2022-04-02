@@ -34,11 +34,10 @@ reset_session();
         // valid username
         const username_reg = /^[a-z0-9_-]{3,16}$/;
 
-        var has_error = false;
+        var has_error = true;
 
         // checks whether the email input is valid
         var email_input = document.getElementById("email").value;
-        console.log(email_input);
         if (email_input.length == 0) {
             flash("Email field cannot be empty.");
             has_error = false
@@ -56,15 +55,29 @@ reset_session();
             flash("Username field cannot be empty");
             has_error = false;
         }
-        if (username_input.length <= 3 || username_input.length >= 16) {
-            flash("Username can only contain 3-16 characters.")
-            has_error = false;
-        }
         if (!username_reg.test(username_input)) {
-            flash("Username can only contain characters 0-9, a-z, _, -");
+            flash("Username can only contain 3-16 characters a-z, 0-9, _, or -");
             has_error = false;
         }
 
+        // checks if password is valid and whether password and confirm password inputs match
+        // clears password and confirm field if they do not match
+        var password_input = document.getElementById("pw").value;
+        var confirm_input = document.getElementById("confirm").value;
+        if (password_input.length == 0) {
+            flash("Password field cannot be empty");
+            has_error = false;
+        }
+        if (confirm_input.length == 0) {
+            flash("Confirm field cannot be empty");
+            has_error = false;
+        }
+        if (String(password_input).length > 0 && password_input !== confirm_input) {
+            flash("Passwords must match");
+            document.getElementById("pw").value = "";
+            document.getElementById("confirm").value = "";
+            has_error = false;
+        }
 
         return has_error;
     }

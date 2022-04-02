@@ -22,15 +22,21 @@ require(__DIR__ . "/../../partials/nav.php");
         
 
         var email_input = document.getElementById("email").value;
-        if (email_input.length == 0) {
-            flash("Username/Email field cannot be empty");
-            has_error = false;
-        }
+        // if (email_input.length == 0) {
+        //     flash("Username/Email field cannot be empty");
+        //     has_error = false;
+        // }
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
                 has_error = false;
             }
+        }
+
+        var password_input = document.getElementById("pw").value;
+        if (pw.length < 8) {
+            flash("Password is too short");
+            has_error = false;
         }
 
         //TODO update clientside validation to check if it should

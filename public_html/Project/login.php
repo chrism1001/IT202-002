@@ -37,14 +37,12 @@ require(__DIR__ . "/../../partials/nav.php");
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
-                document.getElementById("email").value = "";
                 document.getElementById("pw").value = "";
                 has_error = false;
             }
         } else {
             if (!username_reg.test(email_input)) {
                 flash("Not a valid username");
-                document.getElementById("email").value = "";
                 document.getElementById("pw").value = "";
                 has_error = false;
             }

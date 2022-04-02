@@ -7,11 +7,11 @@ reset_session();
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email</label>
-        <input type="email" name="email" required />
+        <input type="email" id="email" name="email" required />
     </div>
     <div>
         <label for="username">Username</label>
-        <input type="text" name="username" required maxlength="30" />
+        <input type="text" id="username" name="username" required maxlength="30" />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -19,7 +19,7 @@ reset_session();
     </div>
     <div>
         <label for="confirm">Confirm</label>
-        <input type="password" name="confirm" required minlength="8" />
+        <input type="password" id="confirm" name="confirm" required minlength="8" />
     </div>
     <input type="submit" value="Register" />
 </form>
@@ -28,7 +28,45 @@ reset_session();
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
 
-        return true;
+        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
+        // common email ids.
+        const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        // valid username
+        const username_reg = /^[a-z0-9_-]{3,16}$/;
+
+        var has_error = false;
+
+        // checks whether the email input is valid
+        var email_input = document.getElementById("email").value;
+        console.log(email_input);
+        if (email_input.length == 0) {
+            flash("Email field cannot be empty.");
+            has_error = false
+        }
+        if (email_input.includes("@")) {
+            if (!email_reg.test(email_input)) {
+                flash("Not a valid email address");
+                has_error = false;
+            }
+        }
+
+        // checks if username is correct length and contains valid characters
+        var username_input = document.getElementById("username").value;
+        if (username_input.length == 0) {
+            flash("Username field cannot be empty");
+            has_error = false;
+        }
+        if (username_input.length <= 3 || username_input.length >= 16) {
+            flash("Username can only contain 3-16 characters.")
+            has_error = false;
+        }
+        if (!username_reg.test(username_input)) {
+            flash("Username can only contain characters 0-9, a-z, _, -");
+            has_error = false;
+        }
+
+
+        return has_error;
     }
 </script>
 <?php

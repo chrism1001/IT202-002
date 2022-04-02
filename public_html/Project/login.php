@@ -17,15 +17,18 @@ require(__DIR__ . "/../../partials/nav.php");
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
 
+        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
+        // common email ids.
         const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
-        var has_error = true;
+        // valid username
+        const username_reg = /^[a-z0-9_-]{3,16}$/;
         
 
         var email_input = document.getElementById("email").value;
-        // if (email_input.length == 0) {
-        //     flash("Username/Email field cannot be empty");
-        //     has_error = false;
-        // }
+        if (email_input.length == 0) {
+            flash("Username/Email field cannot be empty");
+            has_error = false;
+        }
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
@@ -34,6 +37,11 @@ require(__DIR__ . "/../../partials/nav.php");
         }
 
         var password_input = document.getElementById("pw").value;
+        console.log(password_input);
+        if (pw.length == 0) {
+            flash("Password field cannot be empty");
+            has_error = false;
+        }
         if (pw.length < 8) {
             flash("Password is too short");
             has_error = false;

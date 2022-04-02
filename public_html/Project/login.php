@@ -82,7 +82,6 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     if (str_contains($email, "@")) {
         //sanitize
         $email = sanitize_email($email);
-        //validate
         if (!is_valid_email($email)) {
             flash("Invalid email address");
             $hasError = true;
@@ -143,6 +142,4 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     }
 }
 ?>
-<?php
-require(__DIR__ . "/../../partials/flash.php");
-
+<?php require(__DIR__ . "/../../partials/flash.php");

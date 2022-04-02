@@ -4,7 +4,7 @@ require(__DIR__ . "/../../partials/nav.php");
 <form onsubmit="return validate(this)" method="POST">
     <div>
         <label for="email">Email/Username</label>
-        <input type="text" name="email" required />
+        <input type="text" id="email" name="email" required />
     </div>
     <div>
         <label for="pw">Password</label>
@@ -17,9 +17,54 @@ require(__DIR__ . "/../../partials/nav.php");
         //TODO 1: implement JavaScript validation
         //ensure it returns false for an error and true for success
 
+        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
+        // common email ids.
+        const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        // valid username
+        const username_reg = /^[a-z0-9_-]{3,16}$/;
+        
+        var has_error = true;
+
+        // checks if email/username input is valid
+        // first will check whether the input contains an @ character then will validate the email using regex
+        // if it doesnt contain an @, it will validate the username
+        // if either email or username fail it will reset the fields
+        var email_input = document.getElementById("email").value;
+        if (email_input.length == 0) {
+            flash("Email/Username field cannot be empty");
+            has_error = false;
+        }
+        if (email_input.includes("@")) {
+            if (!email_reg.test(email_input)) {
+                flash("Not a valid email address");
+                document.getElementById("email").value = "";
+                document.getElementById("pw").value = "";
+                has_error = false;
+            }
+        } else {
+            if (!username_reg.test(email_input)) {
+                flash("Not a valid username");
+                document.getElementById("email").value = "";
+                document.getElementById("pw").value = "";
+                has_error = false;
+            }
+        }
+
+        // validates password input is correct length
+        var password_input = document.getElementById("pw").value;
+        console.log(password_input);
+        if (pw.length == 0) {
+            flash("Password field cannot be empty");
+            has_error = false;
+        }
+        if (String(pw).length < 8) {
+            flash("Password is too short");
+            has_error = false;
+        }
+
         //TODO update clientside validation to check if it should
         //valid email or username
-        return true;
+        return has_error;
     }
 </script>
 <?php
@@ -36,13 +81,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     }
     if (str_contains($email, "@")) {
         //sanitize
-        //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $email = sanitize_email($email);
         //validate
-        /*if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            flash("Invalid email address");
-            $hasError = true;
-        }*/
         if (!is_valid_email($email)) {
             flash("Invalid email address");
             $hasError = true;
@@ -62,7 +102,6 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
         $hasError = true;
     }
     if (!$hasError) {
-        //flash("Welcome, $email");
         //TODO 4
         $db = getDB();
         $stmt = $db->prepare("SELECT id, email, username, password from Users 

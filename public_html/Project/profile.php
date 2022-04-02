@@ -128,27 +128,23 @@ $username = get_username();
             form.confirmPassword.value = "";
             isValid = false;
         }
-        if (pw.length == 0) {
+        if (String(pw).length == 0) {
             flash("New password field cannot be empty")
             isValid = false;
-        } else if (pw.length < 8) {
-            flash("Password is too short");
+        } else if (String(pw).length < 8) {
+            flash("New password is too short");
             isValid = false;
         }
-        if (con.length == 0) {
+        if (String(con).length == 0) {
             flash("Confirm password field cannot be empty");
             isValid = false;
         }
 
         var curr_pw = document.getElementById("cp").value;
-        if (curr_pw.length == 0) {
+        if (String(curr_pw).length == 0) {
             flash("Current password field cannot be empty");
             isValid = false;
-        }
-        if (curr_pw.length < 8) {
-            flash("Current password is too short");
-            isValid = false;
-        }
+        } 
 
         // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
         // common email ids.

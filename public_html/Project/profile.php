@@ -120,12 +120,55 @@ $username = get_username();
         let isValid = true;
         //TODO add other client side validation....
 
+        var curr_pw = document.getElementById("cp").value;
+        if (String(curr_pw).length == 0) {
+            flash("Current password field cannot be empty");
+            isValid = false;
+        } else if (String(curr_pw).length < 8) {
+            flash("Current password is too short");
+            isValid = false;
+        }
+
         //example of using flash via javascript
         //find the flash container, create a new element, appendChild
         if (pw !== con) {
-            flash("Password and Confrim password must match", "warning");
+            flash("Password and Confirm password must match", "warning");
+            form.newPassword.value = "";
+            form.confirmPassword.value = "";
             isValid = false;
         }
+        if (String(pw).length == 0) {
+            flash("New password field cannot be empty")
+            isValid = false;
+        } else if (String(pw).length < 8) {
+            flash("New password is too short");
+            isValid = false;
+        }
+        if (String(con).length == 0) {
+            flash("Confirm password field cannot be empty");
+            isValid = false;
+        }
+
+        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
+        // common email ids.
+        const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        // valid username
+        const username_reg = /^[a-z0-9_-]{3,16}$/;
+
+        // email validation
+        var email_input = document.getElementById("email").value;
+        if (!email_reg.test(email_input)) {
+            flash("Not a valid email address");
+            isValid = false;
+        }
+
+        // username validation
+        var username_input = document.getElementById("username").value;
+        if (!username_reg.test(username_input)) {
+            flash("Not a valid username");
+            isValid = false;
+        }
+
         return isValid;
     }
 </script>

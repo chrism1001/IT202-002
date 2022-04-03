@@ -53,7 +53,7 @@ nav li a:hover {
 }
 
 form {
-    margin: 2px auto;
+    margin: 2rem auto;
     border: 2px;
     padding: 2px;
 }
@@ -65,13 +65,16 @@ label {
 input, text {
     display: block;
     width: 250px;
+    border: 1px solid;
+    border-radius: 4px;
+    background: #f9f9f9;
 }
 
 input[type=submit] {
     padding: 2px;
     margin-top: 20px;
     background: #121619;
-    color: white;
+    color: #e8f1f2;
     text-transform: uppercase;
     width: auto;
 }

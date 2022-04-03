@@ -1,6 +1,6 @@
 <table><tr><td> <em>Assignment: </em> IT202 Milestone1 Deliverable</td></tr>
 <tr><td> <em>Student: </em> Christopher Mejia(cm43)</td></tr>
-<tr><td> <em>Generated: </em> 4/3/2022 2:30:14 PM</td></tr>
+<tr><td> <em>Generated: </em> 4/3/2022 2:51:00 PM</td></tr>
 <tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT202-002-S22/it202-milestone1-deliverable/grade/cm43" target="_blank">Grading</a></td></tr></table>
 <table><tr><td> <em>Instructions: </em> <ol>
 <li>Checkout Milestone1 branch</li>
@@ -46,7 +46,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/18">https://github.com/chrism1001/IT202-002/pull/18</a> </td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/46">https://github.com/chrism1001/IT202-002/pull/46</a> </td></tr>
 <tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
-<tr><td> <em>Response:</em> <p>Registration can be split up into two parts. First is client side validation.<br>A new user will have to pass the necessary requirements for email length,<br>username length and password length. I also used regex to make sure the<br>username and email were valid. Next if the user passes the form validation,<br>the form will submit and php will validate the input data and add<br>it to the database.<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>Registration can be split up into two parts. First is client side validation.<br>A new user will have to pass the necessary requirements for email length,<br>username length and password length. I also used regex to make sure the<br>username and email were valid. Next if the user passes the form validation,<br>the form will submit and php will validate the input data and add<br>it to the database.<br><a href="https://cm43-prod.herokuapp.com/Project/register.php">https://cm43-prod.herokuapp.com/Project/register.php</a><br><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 2: </em> Feature: User will be able to login to their account </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=Complete"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add one or more screenshots of the application showing the form and validation errors per the feature requirements</td></tr>
@@ -66,7 +66,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/46">https://github.com/chrism1001/IT202-002/pull/46</a> </td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/44">https://github.com/chrism1001/IT202-002/pull/44</a> </td></tr>
 <tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
-<tr><td> <em>Response:</em> <p>The login validation first determines whether the input is an email or a<br>username. It does this by checking if the email/username field has an @<br>symbol. If it does it uses the valid email regex expression to validate<br>the email. If it doesnt have an @ symbol that the user is<br>logging in with their username and it uses the valid username regex expression<br>to validate the username. If validation passes it is sent to php to<br>determine whether the user exists or does not exist.<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>The login validation first determines whether the input is an email or a<br>username. It does this by checking if the email/username field has an @<br>symbol. If it does it uses the valid email regex expression to validate<br>the email. If it doesnt have an @ symbol that the user is<br>logging in with their username and it uses the valid username regex expression<br>to validate the username. If validation passes it is sent to php to<br>determine whether the user exists or does not exist.<br><a href="https://cm43-prod.herokuapp.com/Project/login.php">https://cm43-prod.herokuapp.com/Project/login.php</a><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 3: </em> Feat: Users will be able to logout </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=Complete"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add a screenshot showing the successful logout message</td></tr>
@@ -82,7 +82,7 @@
 <tr><td> <em>Sub-Task 3: </em> Add the related pull request(s) for this feature</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/34">https://github.com/chrism1001/IT202-002/pull/34</a> </td></tr>
 <tr><td> <em>Sub-Task 4: </em> Explain briefly how the process/code works</td></tr>
-<tr><td> <em>Response:</em> <p>When the user logs out, the reset_session() php function is used to destroy<br>the session and return the user to the login page.<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>When the user logs out, the reset_session() php function is used to destroy<br>the session and return the user to the login page.<br><a href="https://cm43-prod.herokuapp.com/Project/logout.php">https://cm43-prod.herokuapp.com/Project/logout.php</a><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 4: </em> Feature: Basic Security Rules Implemented / Basic Roles Implemented </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=Complete"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add a screenshot showing the logged out user can't access a login-protected page (may be the same as similar request)</td></tr>
@@ -110,7 +110,7 @@
 <tr><td> <em>Sub-Task 6: </em> Explain briefly how the process/code works for login-protected pages</td></tr>
 <tr><td> <em>Response:</em> <p>Login protected pages will use the is_logged_in() function to determine if a user<br>is logged in. If a user is not logged in, the user is<br>redirected to another page. <br></p><br></td></tr>
 <tr><td> <em>Sub-Task 7: </em> Explain briefly how the process/code works for role-protected pages</td></tr>
-<tr><td> <em>Response:</em> <p>Basically php will check the current user role with the has_role() function and<br>determine whether the user entering the role protected area has the role. For<br>example if a user does not have the role admin assigned and tried<br>to access the admin page to create roles it will throw an error<br>and direct them back to the home page.<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>Basically php will check the current user role with the has_role() function and<br>determine whether the user entering the role protected area has the role. For<br>example if a user does not have the role admin assigned and tried<br>to access the admin page to create roles it will throw an error<br>and direct them back to the home page.<br><a href="https://cm43-prod.herokuapp.com/Project/admin/create_role.php">https://cm43-prod.herokuapp.com/Project/admin/create_role.php</a><br><a href="https://cm43-prod.herokuapp.com/Project/admin/list_roles.php">https://cm43-prod.herokuapp.com/Project/admin/list_roles.php</a><br><a href="https://cm43-prod.herokuapp.com/Project/admin/assign_roles.php">https://cm43-prod.herokuapp.com/Project/admin/assign_roles.php</a><br><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 5: </em> Feature: Site should have basic styles/theme applied; everything should be styled </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=Complete"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots to show examples of your site's styles/theme</td></tr>
@@ -146,7 +146,7 @@
 <tr><td> <em>Sub-Task 2: </em> Add the related pull request(s) for this feature</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/chrism1001/IT202-002/pull/34">https://github.com/chrism1001/IT202-002/pull/34</a> </td></tr>
 <tr><td> <em>Sub-Task 3: </em> Explain briefly how the process/code works (view only)</td></tr>
-<tr><td> <em>Response:</em> <p>The profile page uses php to get the user email and username from<br>the database. and displays it on the screen.<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>The profile page uses php to get the user email and username from<br>the database. and displays it on the screen.<br><a href="https://cm43-prod.herokuapp.com/Project/profile.php">https://cm43-prod.herokuapp.com/Project/profile.php</a><br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 8: </em> Feature: User will be able to edit their profile </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://via.placeholder.com/400x120/009955/fff?text=Complete"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshots of the User Profile page validation messages and success messages</td></tr>

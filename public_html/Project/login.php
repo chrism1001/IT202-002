@@ -30,10 +30,6 @@ require(__DIR__ . "/../../partials/nav.php");
         // if it doesnt contain an @, it will validate the username
         // if either email or username fail it will reset the fields
         var email_input = document.getElementById("email").value;
-        if (email_input.length == 0) {
-            flash("Email/Username field cannot be empty");
-            has_error = false;
-        }
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
@@ -46,18 +42,6 @@ require(__DIR__ . "/../../partials/nav.php");
                 document.getElementById("pw").value = "";
                 has_error = false;
             }
-        }
-
-        // validates password input is correct length
-        var password_input = document.getElementById("pw").value;
-        console.log(password_input);
-        if (pw.length == 0) {
-            flash("Password field cannot be empty");
-            has_error = false;
-        }
-        if (String(pw).length < 8) {
-            flash("Password is too short");
-            has_error = false;
         }
 
         //TODO update clientside validation to check if it should

@@ -38,10 +38,6 @@ reset_session();
 
         // checks whether the email input is valid
         var email_input = document.getElementById("email").value;
-        if (email_input.length == 0) {
-            flash("Email field cannot be empty.");
-            has_error = false
-        }
         if (email_input.includes("@")) {
             if (!email_reg.test(email_input)) {
                 flash("Not a valid email address");
@@ -51,10 +47,6 @@ reset_session();
 
         // checks if username is correct length and contains valid characters
         var username_input = document.getElementById("username").value;
-        if (username_input.length == 0) {
-            flash("Username field cannot be empty");
-            has_error = false;
-        }
         if (!username_reg.test(username_input)) {
             flash("Username can only contain 3-16 characters a-z, 0-9, _, or -");
             has_error = false;
@@ -64,14 +56,6 @@ reset_session();
         // clears password and confirm field if they do not match
         var password_input = document.getElementById("pw").value;
         var confirm_input = document.getElementById("confirm").value;
-        if (password_input.length == 0) {
-            flash("Password field cannot be empty");
-            has_error = false;
-        }
-        if (confirm_input.length == 0) {
-            flash("Confirm field cannot be empty");
-            has_error = false;
-        }
         if (String(password_input).length > 0 && password_input !== confirm_input) {
             flash("Passwords must match");
             document.getElementById("pw").value = "";

@@ -18,6 +18,8 @@
     margin: 0;
     padding: 0;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #e8f1f2;
+    color: #121619;
 }
 
 .navbar {
@@ -37,17 +39,17 @@ nav li {
 }
 
 nav li a {
-    color: black;
+    color: #121619;
     text-decoration: none;
     padding: 15px;
 }
 
 nav li a:hover {
-    color: blue;
+    color: #e8f1f2;
 }
 
 .navbar, nav, ul, li, a {
-    background-color: white;
+    background-color: #3a7ca4;
 }
 
 form {
@@ -56,24 +58,24 @@ form {
     padding: 2px;
 }
 
+label {
+    display: block;
+}
 
-
-div {
-    margin: 10px;
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-    font-weight: 500;
-    font-size: 16px;
+input, text {
+    display: block;
+    width: 250px;
 }
 
 input[type=submit] {
-    position: relative;
-    margin-left: 50px;
-    background-color: yellow;
-    padding-left: 20px;
-    padding-right: 20px;
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-    font-weight: 500;
-    font-size: 12px;
-    width: 200px;
-    height: 25px;
+    padding: 2px;
+    margin-top: 20px;
+    background: #121619;
+    color: white;
+    text-transform: uppercase;
+    width: auto;
+}
+
+input[type=submit]:hover {
+    background: #3a7ca4;
 }

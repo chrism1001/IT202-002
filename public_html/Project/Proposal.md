@@ -1,5 +1,5 @@
 # Project Name: Simple Shop
-## Project Summary: This project will create a simple e-commerce site for user.s Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
+## Project Summary: This project will create a simple e-commerce site for users. Administrators or store owners will be able to manage inventory and users will be able to manage their cart and place orders.
 ## Github Link: [https://github.com/chrism1001/IT202-002/tree/prod/public_html/Project](https://github.com/chrism1001/IT202-002/tree/prod/public_html/Project)
 ## Project Board Link: [https://github.com/chrism1001/IT202-002/projects/1](https://github.com/chrism1001/IT202-002/projects/1)
 ## Website Link: [https://cm43-prod.herokuapp.com/Project](https://cm43-prod.herokuapp.com/Project)
@@ -17,31 +17,30 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
-    - [ ] \(mm/dd/yyyy of completion) User will be able to register a new account
-        -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) User will be able to login to their account (given they enter the correct credentials)
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) User will be able to logout
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) Basic security rules implemented
-        -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) Basic Roles implemented
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) Site should have basic styles/theme applied; everything should be styled
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) Any output messages/errors should be “user friendly”
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) User will be able to see their profile
-        -  Link to related .md file: [Link Name](link url)  
-    - [ ] \(mm/dd/yyyy of completion) User will be able to edit their profile
-        -  Link to related .md file: [Link Name](link url)    
+    - [X] \(04/01/2022 of completion) User will be able to register a new account
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
+    - [X] \(03/31/2022 of completion) User will be able to login to their account (given they enter the correct credentials)
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
+    - [X] \(03/31/2022 of completion) User will be able to logout
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
+    - [X] \(04/02/2022 of completion) Basic security rules implemented
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
+    - [X] \(04/01/2022 of completion) Basic Roles implemented
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
+    - [X] \(04/03/2022 of completion) Site should have basic styles/theme applied; everything should be styled
+       -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md) 
+    - [X] \(03/31/2022 of completion) Any output messages/errors should be “user friendly”
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
+    - [X] \(03/31/2022 of completion) User will be able to see their profile
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
+    - [X] \(04/02/2022 of completion) User will be able to edit their profile
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
 - Milestone 2
   - (duplicate template here for Milestone 1 features)
 - Milestone 3
   - (duplicate template here for Milestone 1 features)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
-  - 
 ### Intructions
 #### Don't delete this
 1. Pick one project type

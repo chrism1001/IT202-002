@@ -18,23 +18,23 @@
 
 - Milestone 1
     - [X] \(04/01/2022 of completion) User will be able to register a new account
-        -  Link to related .md file: [Link Name](link url)
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(03/31/2022 of completion) User will be able to login to their account (given they enter the correct credentials)
-        -  Link to related .md file: [Link Name](link url)  
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
     - [X] \(03/31/2022 of completion) User will be able to logout
-        -  Link to related .md file: [Link Name](link url)  
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(04/02/2022 of completion) Basic security rules implemented
-        -  Link to related .md file: [Link Name](link url)
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(04/01/2022 of completion) Basic Roles implemented
-        -  Link to related .md file: [Link Name](link url)  
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
     - [] \(mm/dd/yyyy of completion) Site should have basic styles/theme applied; everything should be styled
-        -  Link to related .md file: [Link Name](link url)  
+       -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md) 
     - [X] \(03/31/2022 of completion) Any output messages/errors should be “user friendly”
-        -  Link to related .md file: [Link Name](link url)  
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
     - [X] \(03/31/2022 of completion) User will be able to see their profile
-        -  Link to related .md file: [Link Name](link url)  
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(04/02/2022 of completion) User will be able to edit their profile
-        -  Link to related .md file: [Link Name](link url)    
+        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
 - Milestone 2
   - (duplicate template here for Milestone 1 features)
 - Milestone 3

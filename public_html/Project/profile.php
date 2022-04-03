@@ -115,28 +115,43 @@ $username = get_username();
 
 <script>
     function validate(form) {
+        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
+        // common email ids.
+        const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+        // valid username
+        const username_reg = /^[a-z0-9_-]{3,16}$/;
+
+        let has_error = true;
+        // email validation
+        var email_input = form.email.value;
+        if (!email_reg.test(email_input)) {
+            flash("Not a valid email address");
+            return false;
+        }
+
+        // username validation
+        var username_input = form.username.value;
+        if (!username_reg.test(username_input)) {
+            flash("Not a valid username");
+            return false;
+        }
+
+        let isValid = true;
         let pw = form.newPassword.value;
         let con = form.confirmPassword.value;
-        let isValid = true;
         //TODO add other client side validation....
 
-        var curr_pw = document.getElementById("cp").value;
-        if (String(curr_pw).length == 0) {
-            flash("Current password field cannot be empty");
-            isValid = false;
-        } else if (String(curr_pw).length < 8) {
+        let curr_pw = form.currentPassword.value;
+        if (String(curr_pw) == "") {
+            return true;
+        }
+        if (String(curr_pw).length < 8) {
             flash("Current password is too short");
             isValid = false;
-        }
+        } 
 
         //example of using flash via javascript
         //find the flash container, create a new element, appendChild
-        if (pw !== con) {
-            flash("Password and Confirm password must match", "warning");
-            form.newPassword.value = "";
-            form.confirmPassword.value = "";
-            isValid = false;
-        }
         if (String(pw).length == 0) {
             flash("New password field cannot be empty")
             isValid = false;
@@ -144,28 +159,11 @@ $username = get_username();
             flash("New password is too short");
             isValid = false;
         }
-        if (String(con).length == 0) {
-            flash("Confirm password field cannot be empty");
-            isValid = false;
-        }
 
-        // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
-        // common email ids.
-        const email_reg = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
-        // valid username
-        const username_reg = /^[a-z0-9_-]{3,16}$/;
-
-        // email validation
-        var email_input = document.getElementById("email").value;
-        if (!email_reg.test(email_input)) {
-            flash("Not a valid email address");
-            isValid = false;
-        }
-
-        // username validation
-        var username_input = document.getElementById("username").value;
-        if (!username_reg.test(username_input)) {
-            flash("Not a valid username");
+        if (pw !== con) {
+            flash("Password and Confirm password must match", "warning");
+            form.newPassword.value = "";
+            form.confirmPassword.value = "";
             isValid = false;
         }
 

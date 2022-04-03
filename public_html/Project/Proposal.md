@@ -27,7 +27,7 @@
         -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(04/01/2022 of completion) Basic Roles implemented
         -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  
-    - [] \(mm/dd/yyyy of completion) Site should have basic styles/theme applied; everything should be styled
+    - [X] \(04/03/2022 of completion) Site should have basic styles/theme applied; everything should be styled
        -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md) 
     - [X] \(03/31/2022 of completion) Any output messages/errors should be “user friendly”
         -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)  

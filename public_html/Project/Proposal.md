@@ -25,7 +25,7 @@
         - [https://cm43-prod.herokuapp.com/Project/login.php](https://cm43-prod.herokuapp.com/Project/login.php) 
     - [X] \(03/31/2022 of completion) User will be able to logout
         -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
-        - (https://cm43-prod.herokuapp.com/Project/logout.php)[https://cm43-prod.herokuapp.com/Project/logout.php]
+        - [https://cm43-prod.herokuapp.com/Project/logout.php](https://cm43-prod.herokuapp.com/Project/logout.php)
     - [X] \(04/02/2022 of completion) Basic security rules implemented
         -  Link to related .md file: [https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md)
     - [X] \(04/01/2022 of completion) Basic Roles implemented

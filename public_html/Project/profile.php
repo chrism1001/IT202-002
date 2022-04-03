@@ -120,10 +120,19 @@ $username = get_username();
         let isValid = true;
         //TODO add other client side validation....
 
+        var curr_pw = document.getElementById("cp").value;
+        if (String(curr_pw).length == 0) {
+            flash("Current password field cannot be empty");
+            isValid = false;
+        } else if (String(curr_pw).length < 8) {
+            flash("Current password is too short");
+            isValid = false;
+        }
+
         //example of using flash via javascript
         //find the flash container, create a new element, appendChild
         if (pw !== con) {
-            flash("Password and Confrim password must match", "warning");
+            flash("Password and Confirm password must match", "warning");
             form.newPassword.value = "";
             form.confirmPassword.value = "";
             isValid = false;
@@ -139,12 +148,6 @@ $username = get_username();
             flash("Confirm password field cannot be empty");
             isValid = false;
         }
-
-        var curr_pw = document.getElementById("cp").value;
-        if (String(curr_pw).length == 0) {
-            flash("Current password field cannot be empty");
-            isValid = false;
-        } 
 
         // regex is from https://digitalfortress.tech/js/top-15-commonly-used-regex/
         // common email ids.

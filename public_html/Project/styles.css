@@ -1,0 +1,84 @@
+.alert-success {
+    background-color: green
+}
+
+.alert-warning {
+    background-color: yellow;
+}
+
+.alert-danger {
+    background-color: red;
+}
+
+.alert-info {
+    background-color: teal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #e8f1f2;
+    color: #121619;
+}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav {
+    padding: 20px;
+    box-shadow: 0 0 3px black;
+}
+
+nav li {
+    display: inline;
+    padding-left: 20px;
+}
+
+nav li a {
+    color: #121619;
+    text-decoration: none;
+    padding: 15px;
+}
+
+nav li a:hover {
+    color: #e8f1f2;
+}
+
+.navbar, nav, ul, li, a {
+    background-color: #3a7ca4;
+}
+
+form {
+    margin: 2rem auto;
+    border: 2px;
+    padding: 2px;
+}
+
+label {
+    display: block;
+}
+
+input, text {
+    display: block;
+    width: 250px;
+    border: 1px solid;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+input[type=submit] {
+    padding: 2px;
+    margin-top: 20px;
+    background: #121619;
+    color: #e8f1f2;
+    text-transform: uppercase;
+    width: auto;
+}
+
+input[type=submit]:hover {
+    background: #3a7ca4;
+}

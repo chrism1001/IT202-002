@@ -1,6 +1,6 @@
 <?php
 
-function update_data($table, $id,  $data, $ignore = [])
+function update_data($table, $id,  $data, $ignore = ["id", "submit"])
 {
     $columns = array_keys($data);
     //again just another example of removing values from an array

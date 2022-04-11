@@ -13,7 +13,7 @@ require(__DIR__ . "/../../partials/nav.php");
                 <label class="form-label" for="pw">Password</label>
                 <input class="form-control" type="password" id="pw" name="password" required minlength="8" />
             </div>
-            <input type="submit" class="mt-3 btn btn-primary" value="Login" />
+            <input type="submit" class="mt-3 btn btn-Dark" value="Login" />
         </form>
     </div>
 </form>

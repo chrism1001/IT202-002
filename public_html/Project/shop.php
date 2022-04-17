@@ -111,6 +111,11 @@ try {
                         <td>
                             <a href="product_details.php?id=<?php se($item, 'id'); ?>">Product Details</a>
                         </td>
+                        <?php if (has_Role("Admin")) : ?>
+                            <td>
+                                <a href="admin/edit_product.php?id=<?php se($item, "id"); ?>">Edit</a>
+                            </td>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

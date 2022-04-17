@@ -15,7 +15,7 @@ function flash(message = "", color = "info") {
     flash.appendChild(outerDiv);
 }
 
-async function postData(data = {}, url) {
+async function postData(data = {}, url = "") {
     console.log(Object.keys(data).map(function (key) {
         return "" + key + "=" + data[key]; // line break for wrapping only
     }).join("&"));

@@ -17,7 +17,7 @@ if (!in_array($order, ["asc", "desc"])) {
 
 $name = se($_GET, "name", "", false);
 
-$query = $db->prepare("SELECT id, name, description, unit_price, stock FROM $TABLE_NAME WHERE 1=1 and stock > 0");
+$query = "SELECT id, name, description, unit_price, stock FROM $TABLE_NAME WHERE 1=1 and stock > 0 and visibility = 1";
 $params = [];
 if (!empty($name)) {
     $query .= " and name like :name";

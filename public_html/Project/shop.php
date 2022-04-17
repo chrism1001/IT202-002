@@ -4,7 +4,31 @@ require(__DIR__ . "/../../partials/nav.php");
 $TABLE_NAME = "Products";
 $results = [];
 $db = getDB();
-$stmt = $db->prepare("SELECT id, name, description, unit_price, stock FROM $TABLE_NAME WHERE stock > 0 LIMIT 10");
+
+$col = se($_GET, "col", "unit_price", false);
+if (!in_array($col, ["unit_price", "stock", "name", "created"])) {
+    $col = "unit_price";
+}
+
+$order = se($_GET, "order", "asc", false);
+if (!in_array($order, ["asc", "desc"])) {
+    $order = "asc";
+}
+
+$name = se($_GET, "name", "", false);
+
+$query = $db->prepare("SELECT id, name, description, unit_price, stock FROM $TABLE_NAME WHERE 1=1 and stock > 0");
+$params = [];
+if (!empty($name)) {
+    $query .= " and name like :name";
+    $params[":name"] = "%$name%";
+}
+
+if (!empty($col) && !empty($order)) {
+    $query .= " ORDER BY $col $order";
+}
+
+$stmt = $db->prepare($query);
 try {
     $stmt->execute();
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);

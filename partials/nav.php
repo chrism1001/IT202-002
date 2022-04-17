@@ -57,7 +57,6 @@ session_start();
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/add_products.php'); ?>">Add Products</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/list_products.php'); ?>">List Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_product.php'); ?>">Edit Products</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

@@ -104,6 +104,9 @@ try {
                     <div class="card-footer">
                         Cost: <?php se($item, "unit_price"); ?>
                         <button onclick="purchase('<?php se($item, 'id'); ?>')" class="btn btn-primary">Buy Now</button>
+                        <td>
+                            <a href="product_info.php?id=<?php se($item, 'id'); ?>">More Info</a>
+                        </td>
                     </div>
                 </div>
             </div>

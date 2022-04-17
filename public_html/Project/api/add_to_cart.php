@@ -12,7 +12,7 @@ http_response_code(400);
 if (isset($product_id) && $product_id !== 0 && $desired_quantity > 0) {
     if (is_logged_in()) {
         $db = getDB();
-        $stmt = $db->prepare("INSERT INTO Cart(product_id, desired_quantity, user_id) VALUES(:pid, :q, :uid) ON DUPLICATE KEY UPDATE desired_quantity + :q");
+        $stmt = $db->prepare("INSERT INTO CART (product_id, desired_quantity, user_id) VALUES(:pid, :q, :uid) ON DUPLICATE KEY UPDATE desired_quantity = desired_quantity + :q");
         $stmt->bindValue(":pid", $product_id, PDO::PARAM_INT);
         $stmt->bindValue(":q", $desired_quantity, PDO::PARAM_INT);
         $stmt->bindValue(":uid", get_user_id(), PDO::PARAM_INT);

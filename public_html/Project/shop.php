@@ -43,8 +43,12 @@ try {
 
 <script>
     function purchase(item) {
-        alert("It's almost like you purchased an item, but not really");
+        // alert("It's almost like you purchased an item, but not really");
         //TODO create JS helper to update all show-balance elements
+
+        if (add_to_cart) {
+            add_to_cart(item);
+        }
     }
 </script>
 

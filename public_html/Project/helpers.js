@@ -14,3 +14,24 @@ function flash(message = "", color = "info") {
     //add the element to the DOM (if we don't it merely exists in memory)
     flash.appendChild(outerDiv);
 }
+
+async function postData(data = {}, url) {
+    console.log(Object.keys(data).map(function (key) {
+        return "" + key + "=" + data[key]; // line break for wrapping only
+    }).join("&"));
+    const response = await fetch(url, {
+        method:'POST',
+        mode:'cors',
+        cache:'no-cache',
+        credentials:'same-origin',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect:'follow',
+        referrerPolicy:'no-referrer',
+        body: Object.keys(data).map(function (key) {
+            return "" + key + "=" + data[key];
+        }).join("&")
+    });
+    return response.json();
+}

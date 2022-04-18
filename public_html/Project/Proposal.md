@@ -68,7 +68,8 @@
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
       - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
     - [X] \(04/15/2022 of completion) User will be able to see their cart
-      -  Link to related .md file: [Link Name](link url)
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
     - [ ] \(mm/dd/yyyy of completion) User will be able to change quantity of items in their cart
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
       - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)

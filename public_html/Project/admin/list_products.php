@@ -1,6 +1,5 @@
 <?php
 require(__DIR__ . "/../../../partials/nav.php");
-is_logged_in(true);
 $TABLE_NAME = "Products";
 
 if (!has_role("Admin")) {

@@ -41,14 +41,20 @@ function add_to_cart(product_id, desired_quantity = 1) {
     }, "/Project/api/add_to_cart.php").then(data => {
         if (data.status === 200) {
             flash(data.message, "success");
-            if (get_cart) {
-                get_cart();
-            }
         } else {
             flash(data.message, "danger");
         }
     }).catch(e => {
         flash("There was a problem adding the item to cart", "danger");
+    });
+}
+
+function deleteLineItem(line_id, ele) {
+    console.log("delete ele", ele);
+    postData({
+        line_id: line_id
+    }, "/Project/api/delete_cart.php").then(data => {
+        console.log(data);
     });
 }
 

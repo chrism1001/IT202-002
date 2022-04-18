@@ -55,6 +55,8 @@ if ($user_id > 0) {
             <th>Quantity</th>
             <th>Cost</th>
             <th>Subtotal</th>
+            <th>Delete Item</th>
+            <th>Update Item</th>
             <th></th>
         </thead>
         <tbody>
@@ -70,6 +72,15 @@ if ($user_id > 0) {
                         <td>
                             <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>')">x</button>
                         </td>
+                        <td></td>
+                        <td>
+                            <a href="product_details.php?id=<?php se($value['product_id']); ?>">Product Details</a>
+                        </td>
+                        <?php if (has_Role("Admin")) : ?>
+                            <td>
+                                <a href="admin/edit_product.php?id=<?php se($value['product_id']); ?>">Edit</a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>

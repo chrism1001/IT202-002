@@ -10,24 +10,24 @@ $user_id = get_user_id();
 
 $response = ["status" => 400, "message" => "Unhandled error"];
 $res = [];
-//http_response_code(400);
+http_response_code(400);
 if ($user_id > 0) {
     $db = getDB();
     $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, c.desired_quantity, p.unit_price, (p.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
     try {
         $stmt->execute([":uid" => $user_id]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //http_response_code(200);
+        http_response_code(200);
         if ($results) {
             $response["status"] = 200;
             //flash("Retrieved cart.");
-            //$response["message"] = "Retrieved cart";
+            $response["message"] = "Retrieved cart";
             $response["data"] = $results;
             $res += $results;
         } else {
             $response["status"] = 200;
             //flash("No items in cart");
-            //$response["message"] = "No items in cart";
+            $response["message"] = "No items in cart";
             $response["data"] = [];
         }
     } catch (PDOException $e) {
@@ -36,7 +36,7 @@ if ($user_id > 0) {
 } else {
     $response["status"] = 403;
     $response["message"] = "You must be logged in to fetch your cart";
-    //http_response_code(403);
+    http_response_code(403);
 }
 //echo json_encode($response);
 
@@ -82,7 +82,7 @@ foreach ($res as $key => $value) {
                         <td><?php se($value["unit_price"]); ?></td>
                         <td><?php se($value["subtotal"]); ?></td>
                         <td>
-                            <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>')">x</button>
+                            <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>', '<?php se($key); ?>')">x</button>
                         </td>
                         <td>
                             <button class="btn btn-primary" onclick="">Update</button>
@@ -100,7 +100,7 @@ foreach ($res as $key => $value) {
             <?php endif; ?>
             <tr>
                 <td colspan="100%">
-                    <button class="btn btn-danger" onclick="">Delete Cart</button>
+                    <button class="btn btn-danger" onclick="clearCart('<?php se($user_id); ?>')">Delete Cart</button>
                 </td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@ foreach ($res as $key => $value) {
                 <td colspan="100%">Enter a balance:</td>
             </tr>
             <tr>
-                <td colspan="100%"><button class="btn btn-primary" onclick="purchaseCart('<?php se($balance); ?>')">Purchase</button></td>
+                <td colspan="100%"><button class="btn btn-primary" onclick="">Purchase</button></td>
             </tr>
         </tbody>
     </table>

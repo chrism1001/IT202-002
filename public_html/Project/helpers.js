@@ -49,12 +49,27 @@ function add_to_cart(product_id, desired_quantity = 1) {
     });
 }
 
+function clearCart(user_id) {
+    console.log("delete ele");
+    postData({
+        user_id: user_id
+    }, "/Project/api/clear_cart.php").then(data => {
+        console.log(data);
+
+        //ele.closest("tr").remove();
+
+    });
+}
+
 function deleteLineItem(line_id, ele) {
     console.log("delete ele", ele);
     postData({
         line_id: line_id
     }, "/Project/api/delete_cart.php").then(data => {
         console.log(data);
+
+        //ele.closest("tr").remove();
+
     });
 }
 

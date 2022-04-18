@@ -5,7 +5,7 @@ $TABLE_NAME = "Products";
 
 $result = [];
 $columns = get_columns($TABLE_NAME);
-$ignore = ["id", "modified", "created"];
+$ignore = ["id", "visibility", "modified", "created"];
 $db = getDB();
 
 $id = se($_GET, "id", -1, false);
@@ -34,16 +34,33 @@ function map_column($col)
 ?>
 <div class="container-fluid">
     <h1>Product Details</h1>
-    <form method="Post">
-        <?php foreach ($result as $column => $value) : ?>
-            <?php if (!in_array($column, $ignore)) : ?>
-                <div class="mb-4">
-                    <label class="form-label" for="<?php se($column); ?>"><?php se($column); ?></label>
-                    <label class="form-label" id="<?php se($column); ?>" type="<?php echo map_column($column); ?>" value="<?php se($value); ?>" name="<?php se($column); ?>" />
-                </div>
+
+    <table class="table card-table">
+        <thead>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <?php if (has_Role("Admin")) : ?>
+                    <th>Edit</th>
             <?php endif; ?>
-        <?php endforeach; ?>
-    </form>
+        </thead>
+        <tbody>
+            <tr>
+                <?php foreach($result as $key => $value) : ?>
+                    <?php if (!in_array($key, $ignore)) : ?>
+                        <td><?php se($value); ?></td>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <?php if (has_Role("Admin")) : ?>
+                    <td>
+                        <a href="admin/edit_product.php?id=<?php se($item, "id"); ?>">Edit</a>
+                    </td>
+                <?php endif; ?>
+            <tr>
+        </tbody>
+    </table>
 </div>
 
 <?php

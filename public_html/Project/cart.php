@@ -85,7 +85,7 @@ foreach ($res as $key => $value) {
                             <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>', '<?php se($key); ?>')">x</button>
                         </td>
                         <td>
-                            <button class="btn btn-primary" onclick="">Update</button>
+                            <button class="btn btn-primary" onclick="add_to_cart('<?php se($value['product_id']) ?>', )">Update</button>
                         </td>
                         <td>
                             <a href="product_details.php?id=<?php se($value['product_id']); ?>">Product Details</a>

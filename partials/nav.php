@@ -37,6 +37,7 @@ session_start();
         </button>
         <div class="collapse navbar-collapse" id="navContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('shop.php'); ?>">Shop</a></li>
                 <?php if (is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('home.php'); ?>">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
@@ -56,7 +57,6 @@ session_start();
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/add_products.php'); ?>">Add Products</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/list_products.php'); ?>">List Products</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/edit_product.php'); ?>">Edit Products</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>

@@ -48,7 +48,7 @@
 - Milestone 2
     - [X] \(04/14/2022 of completion) User with an admin role or shop owner role will be able to add products to inventory
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
-      - [https://cm43-prod.herokuapp.com/Project/admin/add_products.php][https://cm43-prod.herokuapp.com/Project/admin/add_products.php] 
+      - [https://cm43-prod.herokuapp.com/Project/admin/add_products.php](https://cm43-prod.herokuapp.com/Project/admin/add_products.php) 
     - [X] \(04/14/2022 of completion) Any user will be able to see products with visibility = true on the Shop page
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
       - [https://cm43-prod.herokuapp.com/Project/shop.php](https://cm43-prod.herokuapp.com/Project/shop.php)

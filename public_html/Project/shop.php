@@ -1,6 +1,8 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 
+// Christopher Mejia
+// cm43
 $TABLE_NAME = "Products";
 $results = [];
 $db = getDB();

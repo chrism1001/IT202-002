@@ -65,7 +65,11 @@ foreach ($res as $key => $value) {
         </thead>
         <tbody>
             <?php if (count($res) == 0) : ?>
-                <p>Cart is empty</p>
+                <tr>
+                    <td>
+                        <p>Cart is empty</p>
+                    </td>
+                </tr>
             <?php else : ?>
                 <?php foreach ($res as $key => $value) : ?>
                     <tr>

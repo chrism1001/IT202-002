@@ -46,28 +46,39 @@
         - [Milestone 1](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone1.md) 
         - [https://cm43-prod.herokuapp.com/Project/profile.php](https://cm43-prod.herokuapp.com/Project/profile.php) 
 - Milestone 2
-    - [ ] \(mm/dd/yyyy of completion) User with an admin role or shop owner role will be able to add products to inventory
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) Any user will be able to see products with visibility = true on the Shop page
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) Admin/Shop owner will be able to see products with any visibility
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) Admin/Shop owner will be able to edit any product
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) User will be able to click an item from a list and view a full page with more info about the item (Product Details Page)
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) User must be logged in for any Cart related activity below
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) User will be able to add items to Cart
-      -  Link to related .md file: [Link Name](link url)
-    - [ ] \(mm/dd/yyyy of completion) User will be able to see their cart
-      -  Link to related .md file: [Link Name](link url)
+    - [X] \(04/14/2022 of completion) User with an admin role or shop owner role will be able to add products to inventory
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/admin/add_products.php](https://cm43-prod.herokuapp.com/Project/admin/add_products.php) 
+    - [X] \(04/14/2022 of completion) Any user will be able to see products with visibility = true on the Shop page
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/shop.php](https://cm43-prod.herokuapp.com/Project/shop.php)
+    - [X] \(04/14/2022 of completion) Admin/Shop owner will be able to see products with any visibility
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/admin/list_products.php](https://cm43-prod.herokuapp.com/Project/admin/list_products.php)
+    - [X] \(2022/14/2022 of completion) Admin/Shop owner will be able to edit any product
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/admin/add_products.php](https://cm43-prod.herokuapp.com/Project/admin/add_products.php)
+    - [X] \(04/17/2022 of completion) User will be able to click an item from a list and view a full page with more info about the item (Product Details Page)
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/product_details.php?id=2](https://cm43-prod.herokuapp.com/Project/product_details.php?id=2)
+    - [X] \(04/15/2022 of completion) User must be logged in for any Cart related activity below
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
+    - [X] \(04/15/2022 of completion) User will be able to add items to Cart
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
+    - [X] \(04/15/2022 of completion) User will be able to see their cart
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
     - [ ] \(mm/dd/yyyy of completion) User will be able to change quantity of items in their cart
-      -  Link to related .md file: [Link Name](link url)
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
     - [ ] \(mm/dd/yyyy of completion) User will be able to remove a single item from their cart via button click
-      -  Link to related .md file: [Link Name](link url)
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
     - [ ] \(mm/dd/yyyy of completion) User will be able to clear their entire cart via a button click
-      -  Link to related .md file: [Link Name](link url)
+      - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
+      - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
 - Milestone 3
   - (duplicate template here for Milestone 1 features)
 - Milestone 4

@@ -13,7 +13,7 @@ $res = [];
 //http_response_code(400);
 if ($user_id > 0) {
     $db = getDB();
-    $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, c.desired_quantity, c.unit_price, (c.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
+    $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, c.desired_quantity, p.unit_price, (p.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
     try {
         $stmt->execute([":uid" => $user_id]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ if ($user_id > 0) {
         } else {
             $response["status"] = 200;
             //flash("No items in cart");
-            $response["message"] = "No items in cart";
+            //$response["message"] = "No items in cart";
             $response["data"] = [];
         }
     } catch (PDOException $e) {
@@ -40,6 +40,10 @@ if ($user_id > 0) {
 }
 //echo json_encode($response);
 
+$total = 0;
+foreach ($res as $key => $value) {
+    $total += $value["subtotal"];
+}
 
 ?>
 
@@ -66,13 +70,19 @@ if ($user_id > 0) {
                 <?php foreach ($res as $key => $value) : ?>
                     <tr>
                         <td><?php se($value["name"]); ?></td>
-                        <td><?php se($value["desired_quantity"]); ?></td>
+                        <td>
+                            <form method="POST">
+                                <input class="form-control" value="<?php se($value["desired_quantity"]); ?>">
+                            </form>
+                        </td>
                         <td><?php se($value["unit_price"]); ?></td>
                         <td><?php se($value["subtotal"]); ?></td>
                         <td>
                             <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>')">x</button>
                         </td>
-                        <td></td>
+                        <td>
+                            <button class="btn btn-primary" onclick="">Update</button>
+                        </td>
                         <td>
                             <a href="product_details.php?id=<?php se($value['product_id']); ?>">Product Details</a>
                         </td>
@@ -84,6 +94,20 @@ if ($user_id > 0) {
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>
+            <tr>
+                <td colspan="100%">
+                    <button class="btn btn-danger" onclick="">Delete Cart</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="100%">Total: <?php se($total); ?></td>
+            </tr>
+            <tr>
+                <td colspan="100%">Enter a balance:</td>
+            </tr>
+            <tr>
+                <td colspan="100%"><button class="btn btn-primary" onclick="purchaseCart('<?php se($balance); ?>')">Purchase</button></td>
+            </tr>
         </tbody>
     </table>
 </div>

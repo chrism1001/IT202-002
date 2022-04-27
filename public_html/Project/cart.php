@@ -108,11 +108,12 @@ foreach ($res as $key => $value) {
                 <td colspan="100%">Total: <?php se($total); ?></td>
             </tr>
             <tr>
-                <td colspan="100%">Enter a balance:</td>
-            </tr>
-            <tr>
-                <td colspan="100%"><button class="btn btn-primary" onclick="">Purchase</button></td>
+                <td colspan="100%"><button class="btn btn-primary" onclick="location.href = 'checkout_form.php'">Purchase</button></td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<?php
+    require_once(__DIR__ . "/../../partials/flash.php");
+?>

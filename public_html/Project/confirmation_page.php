@@ -5,6 +5,7 @@ is_logged_in(true);
 $customer_info = [];
 $purchase_info = [];
 $total = 0;
+$payment = 0;
 $user_id = get_user_id();
 if ($user_id > 0) {
     $db = getDB();
@@ -44,17 +45,57 @@ if ($user_id > 0) {
             error_log(var_export($e, true));
         }
     }
-}
 
-foreach ($customer_info as $key => $value) {
-    se($value["quantity"]);
+    foreach ($customer_info as $key => $value) {
+        $total = $value["total_price"];
+        $payment = $value["money_received"];
+    }
 }
 
 ?>
 
 <div class="container-fluid">
-    <h1>Thank You For Your Order!</h1>
+    <h1>Order Confirmation</h1>
     <table class="table card-table">
-
+        <thead>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Payment Method</th>
+        </thead>
+        <tbody>
+            <?php foreach($customer_info as $key => $value) : ?>
+                <tr>
+                    <td><?php se($value["name"]) ?></td>
+                    <td><?php se($value["address"]) ?></td>
+                    <td><?php se($value["payment_method"]) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
+    <table class="table card-table">
+        <thead>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+        </thead>
+        <tbody>
+            <?php foreach($purchase_info as $key => $value) : ?>
+                <tr>
+                    <td><?php se($value["name"]) ?></td>
+                    <td><?php se($value["quantity"]) ?></td>
+                    <td><?php se($value["unit_price"]) ?></td>
+                    <td><?php se($value["subtotal"]) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="100%">Total: <?php se($total); ?></td>
+            </tr>
+            <tr>
+                <td colspan="100%">Payment: <?php se($payment); ?></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Thank You For Your Purchase!</h5>
 </div>

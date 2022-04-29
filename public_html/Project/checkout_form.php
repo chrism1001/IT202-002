@@ -91,7 +91,7 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
                 $stmt->execute();
                 $r = $stmt->fetch(PDO::FETCH_ASSOC);
                 $next_order_id = (int)se($r, "id", 0, false);
-                $next_order_id++;
+                //$next_order_id++;
             } catch (PDOException $e) {
                 error_log("Error fetching order_id: " . var_export($e));
                 $db->rollback();
@@ -131,6 +131,7 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
                     $stmt->execute([":uid" => $user_id]);
                     $db->commit();
                     flash("Purchase Complete");
+                    header("Location: confirmation_page.php");
                 } catch (PDOException $e) {
                     error_log("Error deleting cart: " . var_export($e, true));
                     $db->rollback();

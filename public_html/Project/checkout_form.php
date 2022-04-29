@@ -34,7 +34,7 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
     $fullname = "";
     $fname = se($_POST, "fname", "", false);
     $lname = se($_POST, "lname", "", false);
-    $fullname = $fname . $lname;
+    $fullname = $fname . " " . $lname;
 
     $address = "";
     $addr = se($_POST, "address", "", false);
@@ -56,12 +56,14 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
             $res += $results;
         }
 
+        // make sure user can affor cart
         $has_error = true;
         if ($payment < $total) {
             flash("You cannot afford to purchase your cart", "danger");
             $has_error = false;
         } 
 
+        // quantity check
         foreach ($res as $key => $value) {
             if ((int)$value["stock"] < (int)$value["desired_quantity"]) {
                 $warning = "The item " . strval($value["name"]) . " only has " . strval($value["stock"]) . " units in stock. Please Update Cart.";
@@ -70,9 +72,71 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
             }
         }
 
-        if (!$has_error) {
+        // transaction process
+        if ($has_error) {
             $db->beginTransaction();
-            
+
+            // create order entry
+            $stmt = $db->prepare("INSERT INTO Orders (user_id, total_price, address, payment_method, money_received, name) VALUES(:uid, :tprice, :address, :pmethod, :payment, :name)");
+            try {
+                $stmt->execute([":uid" => get_user_id(), ":tprice" => $total, ":address" => $address, ":pmethod" => $payment_method, ":payment" => (int)$payment, ":name" => $fullname]);
+            } catch (Exception $e) {
+                error_log("Error inserting into orders table" . var_export($e, true));
+            }
+
+            // get order_id
+            $stmt = $db->prepare("SELECT max(id) as id FROM Orders");
+            $next_order_id = 0;
+            try {
+                $stmt->execute();
+                $r = $stmt->fetch(PDO::FETCH_ASSOC);
+                $next_order_id = (int)se($r, "id", 0, false);
+                $next_order_id++;
+            } catch (PDOException $e) {
+                error_log("Error fetching order_id: " . var_export($e));
+                $db->rollback();
+            }
+
+            // map cart to orderItems for order history
+            if ($next_order_id > 0) {
+                $stmt = $db->prepare("INSERT INTO OrderItems (user_id, order_id, product_id, quantity, unit_price)
+                SELECT user_id, :oid, p.id, c.desired_quantity, p.unit_price FROM CART c JOIN Products p ON c.product_id = p.id 
+                WHERE user_id = :uid");
+                try {
+                    $stmt->execute([":uid" => $user_id, ":oid" => $next_order_id]);
+                } catch (PDOException $e) {
+                    error_log("Error mapping cart data to order history: " . var_export($e, true));
+                    $db->rollback();
+                    $next_order_id = 0; 
+                }
+            }
+
+            // updating stock
+            if ($next_order_id > 0) {
+                $stmt = $db->prepare("UPDATE Products set stock = stock - (select IFNULL(desired_quantity, 0) FROM CART WHERE product_id = Products.id and user_id = :uid)
+                WHERE id in (SELECT product_id FROM CART where user_id = :uid)");
+                try {
+                    $stmt->execute([":uid" => $user_id]);
+                } catch (PDOException $e) {
+                    error_log("Update stock error: " . var_export($e, true));
+                    $db->rollback();
+                    $next_order_id = 0;
+                }
+            }
+
+            // clear users cart
+            if ($next_order_id > 0) {
+                $stmt = $db->prepare("DELETE FROM CART WHERE user_id = :uid");
+                try {
+                    $stmt->execute([":uid" => $user_id]);
+                    $db->commit();
+                    flash("Purchase Complete");
+                } catch (PDOException $e) {
+                    error_log("Error deleting cart: " . var_export($e, true));
+                    $db->rollback();
+                    $next_order_id = 0;
+                }
+            }
         }
 
     } catch (PDOException $e) {

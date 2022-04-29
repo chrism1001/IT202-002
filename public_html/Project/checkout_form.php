@@ -29,21 +29,39 @@ foreach ($res as $key => $value) {
     $total += $value["subtotal"];
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"]) && isset($_POST["city"]) && isset($_POST["inputState"]) &&
+    isset($_POST["zipcode"]) && isset($_POST["payment"])) {
     $fullname = "";
     $fname = se($_POST, "fname", "", false);
     $lname = se($_POST, "lname", "", false);
     $fullname = $fname . $lname;
-    error_log($fullname);
 
     $address = "";
     $addr = se($_POST, "address", "", false);
     $city = se($_POST, "city", "", false);
     $state = se($_POST, "inputState", "", false);
-    $zipcode = se($_POST, "zipcode", "", false);
-    $address = $addr . ", " . $city . ", " . $state . " " . $zipcode;
-}
+    $zipcode = se($_POST, "zipcode", -1, false);
+    $address = $addr . ", " . $city . ", " . $state . " " . strval($zipcode);
 
+    $payment_method = se($_POST, "payment_method", "", false);
+    $payment = se($_POST, "payment", -1, false);
+
+    $db = getDB();
+    $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, c.desired_quantity, p.unit_price, (p.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
+    try {
+        $stmt->execute([":uid" => $user_id]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($payment >= $total) {
+            $db->beginTransaction();
+            // check quanity
+
+        } else {
+            flash("You cannot afford to purchase your cart", "danger");
+        }
+    } catch (PDOException $e) {
+        error_log("Error fetching cart" . var_export($e, true));
+    }
+}
 
 ?>
 

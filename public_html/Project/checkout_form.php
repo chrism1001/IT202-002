@@ -43,7 +43,7 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
     $zipcode = se($_POST, "zipcode", -1, false);
     $address = $addr . ", " . $city . ", " . $state . " " . strval($zipcode);
 
-    $payment_method = se($_POST, "payment_method", "", false);
+    $payment_method = se($_POST, "paymentMethod", "", false);
     $payment = se($_POST, "payment", -1, false);
 
     $db = getDB();

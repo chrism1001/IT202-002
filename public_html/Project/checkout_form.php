@@ -47,17 +47,34 @@ if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["address"])
     $payment = se($_POST, "payment", -1, false);
 
     $db = getDB();
-    $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, c.desired_quantity, p.unit_price, (p.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
+    $stmt = $db->prepare("Select p.name, c.id as line_id, c.product_id, p.stock, c.desired_quantity, p.unit_price, (p.unit_price*c.desired_quantity) as subtotal FROM CART c JOIN Products p on c.product_id = p.id WHERE c.user_id = :uid");
+    $res = [];
     try {
         $stmt->execute([":uid" => $user_id]);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($payment >= $total) {
-            $db->beginTransaction();
-            // check quanity
-
-        } else {
-            flash("You cannot afford to purchase your cart", "danger");
+        if ($results) {
+            $res += $results;
         }
+
+        $has_error = true;
+        if ($payment < $total) {
+            flash("You cannot afford to purchase your cart", "danger");
+            $has_error = false;
+        } 
+
+        foreach ($res as $key => $value) {
+            if ((int)$value["stock"] < (int)$value["desired_quantity"]) {
+                $warning = "The item " . strval($value["name"]) . " only has " . strval($value["stock"]) . " units in stock. Please Update Cart.";
+                flash($warning);
+                $has_error = false;
+            }
+        }
+
+        if (!$has_error) {
+            $db->beginTransaction();
+            
+        }
+
     } catch (PDOException $e) {
         error_log("Error fetching cart" . var_export($e, true));
     }

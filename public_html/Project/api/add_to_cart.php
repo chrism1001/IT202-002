@@ -7,7 +7,7 @@ if (session_status() != PHP_SESSION_ACTIVE) {
 
 $product_id = (int)se($_POST, "product_id", 0, false);
 $desired_quantity = (int)se($_POST, "desired_quantity", 0, false);
-$respone = ["status" => 400, "message" => "Invalid data"];
+$response = ["status" => 400, "message" => "Invalid data"];
 http_response_code(400);
 if (isset($product_id) && $product_id !== 0 && $desired_quantity > 0) {
     if (is_logged_in()) {
@@ -31,4 +31,4 @@ if (isset($product_id) && $product_id !== 0 && $desired_quantity > 0) {
         $response["message"] = "Must be logged in to add to cart";
     }
 }
-echo json_encode($respone);
+echo json_encode($response);

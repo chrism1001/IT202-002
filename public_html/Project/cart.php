@@ -6,7 +6,15 @@ error_log("get_cart received data: " . var_export($_REQUEST, true));
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
+
+// if (isset($_POST["submit"])) {
+//     if (update_data("CART", $_GET["id"], $_POST)) {
+//         flash("Quanity updated", "success");
+//     }
+// }
+
 $user_id = get_user_id();
+$id = se($_GET, "id", -1, false);
 
 $response = ["status" => 400, "message" => "Unhandled error"];
 $res = [];
@@ -39,6 +47,7 @@ if ($user_id > 0) {
     http_response_code(403);
 }
 //echo json_encode($response);
+//flash($response["message"]);
 
 $total = 0;
 foreach ($res as $key => $value) {
@@ -57,10 +66,10 @@ foreach ($res as $key => $value) {
         <thead>
             <th>Item</th>
             <th>Quantity</th>
+            <th>Update Item</th>
             <th>Cost</th>
             <th>Subtotal</th>
             <th>Delete Item</th>
-            <th>Update Item</th>
             <th></th>
         </thead>
         <tbody>
@@ -77,15 +86,15 @@ foreach ($res as $key => $value) {
                         <td>
                             <form method="POST">
                                 <input class="form-control" value="<?php se($value["desired_quantity"]); ?>">
+                                <td>
+                                    <button class="btn btn-primary" type="submit" value="Update" name="submit">Update</button>
+                                </td>
                             </form>
                         </td>
                         <td><?php se($value["unit_price"]); ?></td>
                         <td><?php se($value["subtotal"]); ?></td>
                         <td>
                             <button class="btn btn-danger" onclick="deleteLineItem('<?php se($value['line_id']); ?>', '<?php se($key); ?>')">x</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-primary" onclick="add_to_cart('<?php se($value['product_id']) ?>', )">Update</button>
                         </td>
                         <td>
                             <a href="product_details.php?id=<?php se($value['product_id']); ?>">Product Details</a>
@@ -107,11 +116,12 @@ foreach ($res as $key => $value) {
                 <td colspan="100%">Total: <?php se($total); ?></td>
             </tr>
             <tr>
-                <td colspan="100%">Enter a balance:</td>
-            </tr>
-            <tr>
-                <td colspan="100%"><button class="btn btn-primary" onclick="">Purchase</button></td>
+                <td colspan="100%"><button class="btn btn-primary" onclick="location.href = 'checkout_form.php'">Purchase</button></td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<?php
+    require_once(__DIR__ . "/../../partials/flash.php");
+?>

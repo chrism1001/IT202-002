@@ -12,7 +12,7 @@ $results = [];
 
 if ($user_id > 0) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, name, address, payment_method, total_price, created FROM Orders limit 10");
+    $stmt = $db->prepare("SELECT id, user_id, address, payment_method, total_price, created FROM Orders limit 10");
     try {
         $stmt->execute();
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);

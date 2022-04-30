@@ -1,0 +1,1 @@
+ALTER TABLE Orders MODIFY COLUMN money_received int;

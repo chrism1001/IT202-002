@@ -48,7 +48,7 @@ if ($user_id > 0) {
                     <?php endforeach; ?>
 
                     <td>
-                        <a href="/public_html/Project/order_information.php?id=<?php se($record, "id"); ?>">More Info</a>
+                        <a href="/Project/order_information.php?id=<?php se($record, "id"); ?>">More Info</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

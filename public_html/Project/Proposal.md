@@ -80,7 +80,18 @@
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
       - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
 - Milestone 3
-  - (duplicate template here for Milestone 1 features)
+  - [X] \(04/29/2022 of completion) User will be able to purchase items in their Cart
+      - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
+      - [https://cm43-prod.herokuapp.com/Project/checkout_form.php](https://cm43-prod.herokuapp.com/Project/checkout_form.php)
+  - [X] \(04/29/2022 of completion) Order Confirmation Page
+      - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
+      - [https://cm43-prod.herokuapp.com/Project/confirmation_page.php](https://cm43-prod.herokuapp.com/Project/confirmation_page.php)
+  - [X] \(04/29/2022 of completion) User will be able to see their Purchase History
+      - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
+      - [https://cm43-prod.herokuapp.com/Project/purchase_history.php](https://cm43-prod.herokuapp.com/Project/purchase_history.php)
+  - [X] \(04/29/2022 of completion) Store Owner will be able to see all Purchase History
+      - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
+      - [https://cm43-dev.herokuapp.com/Project/admin/all_purchase_history.php](https://cm43-dev.herokuapp.com/Project/admin/all_purchase_history.php)
 - Milestone 4
   - (duplicate template here for Milestone 1 features)
 ### Intructions

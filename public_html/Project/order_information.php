@@ -40,7 +40,4 @@ foreach ($customer_info as $key => $value) {
     $payment = $value["money_received"];
 }
 
-se($total);
-se($payment);
-
 ?>

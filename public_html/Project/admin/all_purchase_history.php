@@ -4,7 +4,7 @@ is_logged_in(true);
 
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
-    die(header("Location: $BASE_PATH" . "shop.php"));
+    redirect("shop.php");
 }
 
 $user_id = get_user_id();

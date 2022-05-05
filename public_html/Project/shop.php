@@ -21,7 +21,7 @@ $name = se($_GET, "name", "", false);
 
 $base_query = "SELECT id, name, description, unit_price, stock FROM $TABLE_NAME";
 $total_query = "SELECT count(1) as total FROM $TABLE_NAME";
-$query = " WHERE 1=1 and stock > 0";
+$query = " WHERE 1=1 and stock > 0 and visibility = 1";
 
 $params = [];
 if (!empty($name)) {
@@ -32,22 +32,6 @@ if (!empty($name)) {
 if (!empty($col) && !empty($order)) {
     $query .= " ORDER BY $col $order";
 }
-
-// $stmt = $db->prepare($total_query . $query);
-// $total = 0;
-// try {
-//     $stmt->execute($params);
-//     $r = $stmt->fetch(PDO::FETCH_ASSOC);
-//     if ($r) {
-//         $total = (int)se($r, "total", 0, false);
-//     }
-// } catch (PDOException $e) {
-//     flash("<pre>" . var_export($e, true) . "</pre>");
-// }
-
-// $page = se($_GET, "page", 1, false);
-// $per_page = 10;
-// $offset = ($page - 1) * $per_page;
 
 $per_page = 10;
 paginate($total_query . $query, $params, $per_page);

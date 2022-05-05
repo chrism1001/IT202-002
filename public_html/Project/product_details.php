@@ -24,7 +24,27 @@ try {
 } 
 
 if (isset($_POST["rating"]) && isset($_POST["comment"])) {
+    $rating = se($_POST, "rating", -1, false);
+    $comment = se($_POST, "comment", "", false);
 
+    $has_error = false;
+    if (empty($rating)) {
+        flash("Rating cannot be empty");
+        $has_error = true;
+    }
+    if ($rating < 0 || $rating > 5) {
+        flash("Rating must be between 0 to 5");
+        $has_error = true;
+    }
+    if (empty($comment)) {
+        flash("Comment cannot be empty");
+        $has_error = true;
+    }
+
+    if (!$has_error) {
+        $db = getDB();
+        
+    }
 }
 
 ?>

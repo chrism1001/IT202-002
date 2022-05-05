@@ -33,21 +33,25 @@ if (!empty($col) && !empty($order)) {
     $query .= " ORDER BY $col $order";
 }
 
-$stmt = $db->prepare($total_query . $query);
-$total = 0;
-try {
-    $stmt->execute($params);
-    $r = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($r) {
-        $total = (int)se($r, "total", 0, false);
-    }
-} catch (PDOException $e) {
-    flash("<pre>" . var_export($e, true) . "</pre>");
-}
+// $stmt = $db->prepare($total_query . $query);
+// $total = 0;
+// try {
+//     $stmt->execute($params);
+//     $r = $stmt->fetch(PDO::FETCH_ASSOC);
+//     if ($r) {
+//         $total = (int)se($r, "total", 0, false);
+//     }
+// } catch (PDOException $e) {
+//     flash("<pre>" . var_export($e, true) . "</pre>");
+// }
 
-$page = se($_GET, "page", 1, false);
+// $page = se($_GET, "page", 1, false);
+// $per_page = 10;
+// $offset = ($page - 1) * $per_page;
+
 $per_page = 10;
-$offset = ($page - 1) * $per_page;
+paginate($total_query . $query, $params, $per_page);
+
 $query .= " LIMIT :offset, :count";
 $params[":offset"] = $offset;
 $params[":count"] = $per_page;
@@ -154,4 +158,5 @@ try {
 </div>
 <?php
 require(__DIR__ . "/../../partials/flash.php");
+require(__DIR__ . "/../../partials/pagination.php");
 ?>

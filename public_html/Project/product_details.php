@@ -43,7 +43,12 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
 
     if (!$has_error) {
         $db = getDB();
-        
+        $stmt = $db->prepare("INSERT INTO Ratings (user_id, product_id, rating, comment) VALUES(:uid, :pid, :rating, :comment)");
+        try {
+            $stmt->execute([":uid" => $user_id, ":pid" => $id, ":rating" => $rating, ":comment" => $comment]);
+        } catch (Exception $e) {
+            error_log("Error inserting into orders table" . var_export($e, true));
+        }
     }
 }
 

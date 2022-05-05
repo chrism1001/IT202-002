@@ -3,6 +3,8 @@ require(__DIR__ . "/../../partials/nav.php");
 
 $TABLE_NAME = "Products";
 
+$user_id = get_user_id();
+
 $result = [];
 $columns = get_columns($TABLE_NAME);
 $ignore = ["id", "visibility", "modified", "created"];
@@ -21,16 +23,10 @@ try {
     flash("Error looking up record", "danger");
 } 
 
-function map_column($col)
-{
-    global $columns;
-    foreach ($columns as $c) {
-        if ($c["Field"] === $col) {
-            return input_map($c["Type"]);
-        }
-    }
-    return "text";
+if (isset($_POST["rating"]) && isset($_POST["comment"])) {
+
 }
+
 ?>
 <div class="container-fluid">
     <h1>Product Details</h1>
@@ -55,13 +51,56 @@ function map_column($col)
                 <?php endforeach; ?>
                 <?php if (has_Role("Admin")) : ?>
                     <td>
-                        <a href="admin/edit_product.php?id=<?php se($item, "id"); ?>">Edit</a>
+                        <a href="admin/edit_product.php?id=<?php se($value, "id"); ?>">Edit</a>
                     </td>
                 <?php endif; ?>
             <tr>
         </tbody>
     </table>
+    
+    <?php if ($user_id > 0) : ?>
+        <h3>Leave A Review</h3>
+        <form onsubmit="return validate(this);" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="rating">Rating (1-5)</label>
+                <input class="form-control" type="number" id="rating" name="rating" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="comment">Comment</label>
+                <input class="form-control" type="text" id="comment" name="comment" />
+            </div>
+
+            <input type="submit" class="mt-3 btn btn-primary" value="Post Review" />
+        </form>
+    <?php endif; ?>
 </div>
+
+<script>
+    function validate(form) {
+        var has_error = true;
+
+        var rating = document.getElementById("rating").value;
+        if (rating == "") {
+            flash("Rating cannot be empty");
+            has_error = false;
+        }
+        if (rating < 0) {
+            flash("Rating cannot be a negative value");
+            has_error = false;
+        } else if (rating > 5) {
+            flash("Rating must be 0 to 5");
+            has_error = false;
+        }
+
+        var comment = document.getElementById("comment").value;
+        if (comment == "") {
+            flash("Comment cannot be empty");
+            has_error = false;
+        }
+
+        return has_error;
+    }
+</script>
 
 <?php
 //note we need to go up 1 more directory

@@ -19,7 +19,10 @@ if (!in_array($order, ["asc", "desc"])) {
 
 $name = se($_GET, "name", "", false);
 
-$query = "SELECT id, name, description, unit_price, stock FROM $TABLE_NAME WHERE 1=1 and stock > 0 and visibility = 1";
+$base_query = "SELECT id, name, description, unit_price, stock FROM $TABLE_NAME";
+$total_query = "SELECT count(1) as total FROM $TABLE_NAME";
+$query = " WHERE 1=1 and stock > 0 and visibility = 1";
+
 $params = [];
 if (!empty($name)) {
     $query .= " and name like :name";
@@ -30,17 +33,30 @@ if (!empty($col) && !empty($order)) {
     $query .= " ORDER BY $col $order";
 }
 
-$stmt = $db->prepare($query);
+$per_page = 10;
+paginate($total_query . $query, $params, $per_page);
+
+$query .= " LIMIT :offset, :count";
+$params[":offset"] = $offset;
+$params[":count"] = $per_page;
+
+$stmt = $db->prepare($base_query . $query);
+foreach ($params as $key => $value) {
+    $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+    $stmt->bindValue($key, $value, $type);
+}
+$params = null;
+
 try {
-    $stmt->execute($params);
+    $stmt->execute($params); //dynamically populated params to bind
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $results = $r;
     }
 } catch (PDOException $e) {
-    error_log(var_export($e, true));
-    flash("Error fetching items", "danger");
+    flash("<pre>" . var_export($e, true) . "</pre>");
 }
+
 ?>
 
 <script>
@@ -126,4 +142,5 @@ try {
 </div>
 <?php
 require(__DIR__ . "/../../partials/flash.php");
+require(__DIR__ . "/../../partials/pagination.php");
 ?>

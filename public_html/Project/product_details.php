@@ -23,6 +23,11 @@ try {
     flash("Error looking up record", "danger");
 } 
 
+$avg_rating = 0;
+foreach ($result as $key => $value) {
+    $avg_rating = $value["avg_rating"];
+}
+
 if (isset($_POST["rating"]) && isset($_POST["comment"])) {
     $rating = se($_POST, "rating", -1, false);
     $comment = se($_POST, "comment", "", false);
@@ -53,8 +58,7 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
 }
 
 $reviews = [];
-$avg_rating = 0;
-$base_query = "Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id";
+$base_query = "Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id WHERE r.product_id = :pid";
 $total_query = "SELECT count(1) as total FROM Ratings";
 
 $per_page = 10;
@@ -64,6 +68,7 @@ paginate($total_query, $params, $per_page);
 $query = " LIMIT :offset, :count";
 $params[":offset"] = $offset;
 $params[":count"] = $per_page;
+$params[":pid"] = $id;
 
 $stmt = $db->prepare($base_query . $query);
 foreach ($params as $key => $value) {
@@ -95,6 +100,7 @@ try {
             <th>Category</th>
             <th>Stock</th>
             <th>Price</th>
+            <th>Average Rating</th>
             <?php if (has_Role("Admin")) : ?>
                     <th>Edit</th>
             <?php endif; ?>

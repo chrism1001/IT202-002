@@ -23,10 +23,10 @@ try {
     flash("Error looking up record", "danger");
 } 
 
-$avg_rating = 0;
-foreach ($result as $key => $value) {
-    $avg_rating = $value["avg_rating"];
-}
+// $avg_rating = 0;
+// foreach ($result as $key => $value) {
+//     $avg_rating = $value["avg_rating"];
+// }
 
 if (isset($_POST["rating"]) && isset($_POST["comment"])) {
     $rating = se($_POST, "rating", -1, false);
@@ -58,17 +58,18 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
 }
 
 $reviews = [];
-$base_query = "Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id WHERE r.product_id = :pid";
-$total_query = "SELECT count(1) as total FROM Ratings";
+$base_query = "Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id";
+$total_query = "SELECT count(1) as total FROM Ratings r";
+$query = " WHERE r.product_id = :pid";
 
 $per_page = 10;
 $params = [];
-paginate($total_query, $params, $per_page);
+$params[":pid"] = $id;
+paginate($total_query . $query, $params, $per_page);
 
-$query = " LIMIT :offset, :count";
+$query .= " LIMIT :offset, :count";
 $params[":offset"] = $offset;
 $params[":count"] = $per_page;
-$params[":pid"] = $id;
 
 $stmt = $db->prepare($base_query . $query);
 foreach ($params as $key => $value) {
@@ -81,7 +82,7 @@ try {
     $stmt->execute($params);
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
-        $reviews += $r;
+        $reviews = $r;
     }
 } catch (PDOException $e) {
     error_log(var_export($e, true));

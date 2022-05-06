@@ -54,9 +54,26 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
 
 $reviews = [];
 $avg_rating = 0;
-$stmt = $db->prepare("Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id");
+$base_query = "Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id";
+$total_query = "SELECT count(1) as total FROM Ratings";
+
+$per_page = 10;
+$params = [];
+paginate($total_query, $params, $per_page);
+
+$query = " LIMIT :offset, :count";
+$params[":offset"] = $offset;
+$params[":count"] = $per_page;
+
+$stmt = $db->prepare($base_query . $query);
+foreach ($params as $key => $value) {
+    $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+    $stmt->bindValue($key, $value, $type);
+}
+$params = null;
+
 try {
-    $stmt->execute();
+    $stmt->execute($params);
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $reviews += $r;
@@ -176,6 +193,7 @@ try {
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../partials/flash.php");
+require(__DIR__ . "/../../partials/pagination.php");
 ?>
 
 

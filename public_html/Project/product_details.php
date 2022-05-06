@@ -7,7 +7,7 @@ $user_id = get_user_id();
 
 $result = [];
 $columns = get_columns($TABLE_NAME);
-$ignore = ["id", "visibility", "modified", "created"];
+$ignore = ["id", "visibility", "modified", "created", "user_id"];
 $db = getDB();
 
 $id = se($_GET, "id", -1, false);
@@ -54,9 +54,9 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
 
 $reviews = [];
 $avg_rating = 0;
-$stmt = $db->prepare("SELECT u.username, r.rating, r.comment FROM Ratings r JOIN Users u WHERE r.product_id = :id");
+$stmt = $db->prepare("Select r.user_id, u.username, r.rating, r.comment FROM Ratings r JOIN Users u on u.id = r.user_id");
 try {
-    $stmt->execute([":id" => $id]);
+    $stmt->execute();
     $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if ($r) {
         $reviews += $r;
@@ -114,9 +114,36 @@ try {
         </form>
     <?php endif; ?>
 
-    <table class="table card-table">
-
-    </table>
+    <?php if (count($reviews) == 0) : ?>
+        <p>No reviews to show</p>
+    <?php else : ?>
+        <table class="table card-table">
+            <?php foreach ($reviews as $index => $record) : ?>
+                <?php if ($index == 0) : ?>
+                    <thead>
+                        <?php foreach($record as $column => $value) : ?>
+                            <?php if (!in_array($column, $ignore)) : ?>
+                                <th><?php se($column); ?></th>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </thead>
+                <?php endif; ?>
+                <tr>
+                    <?php foreach ($record as $column => $value) : ?>
+                        <?php if ($column == "username") : ?>
+                            <td>
+                                <?php $user_id = se($record, "user_id", -1, false);
+                                $username = se($record, "username", "", false);
+                                include(__DIR__ . "/../../partials/profile_link.php") ?>
+                            </td>
+                        <?php elseif (!in_array($column, $ignore)) : ?>
+                            <td><?php se($value); ?></td>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
 </div>
 
 <script>

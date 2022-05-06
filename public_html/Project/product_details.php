@@ -52,6 +52,21 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
     }
 }
 
+$reviews = [];
+$avg_rating = 0;
+$stmt = $db->prepare("SELECT u.username, r.rating, r.comment FROM Ratings r JOIN Users u WHERE r.product_id = :id");
+try {
+    $stmt->execute([":id" => $id]);
+    $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($r) {
+        $reviews += $r;
+    }
+} catch (PDOException $e) {
+    error_log(var_export($e, true));
+    flash("Error looking up record", "danger");
+}
+
+
 ?>
 <div class="container-fluid">
     <h1>Product Details</h1>
@@ -98,6 +113,10 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
             <input type="submit" class="mt-3 btn btn-primary" value="Post Review" />
         </form>
     <?php endif; ?>
+
+    <table class="table card-table">
+
+    </table>
 </div>
 
 <script>

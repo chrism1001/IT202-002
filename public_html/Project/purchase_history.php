@@ -6,9 +6,34 @@ $results = [];
 $user_id = get_user_id();
 if ($user_id > 0) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, name, address, payment_method, total_price, created from Orders WHERE user_id = :uid limit 10");
+
+    $order = se($_GET, "order", "asc", false);
+    if (!in_array($order, ["asc", "desc"])) {
+        $order = "asc";
+    }
+
+    $base_query = "SELECT id, name, address, payment_method, total_price, created from Orders";
+    $total_query = "SELECT count(1) as total FROM Orders";
+    $query = " WHERE user_id = :uid";
+
+    $per_page = 5;
+    $params = [];
+    $params[":uid"] = $user_id;
+    paginate($total_query . $query, $params, $per_page);
+
+    $query .= " LIMIT :offset, :count";
+    $params[":offset"] = $offset;
+    $params[":count"] = $per_page;
+
+    $stmt = $db->prepare($base_query . $query);
+    foreach ($params as $key => $value) {
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+    }
+    $params = null;
+
     try {
-        $stmt->execute([":uid" => $user_id]);
+        $stmt->execute($params);
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($r) {
             $results += $r;
@@ -49,3 +74,9 @@ if ($user_id > 0) {
         </table>
     <?php endif; ?>
 </div>
+
+<?php
+//note we need to go up 1 more directory
+require_once(__DIR__ . "/../../partials/flash.php");
+require(__DIR__ . "/../../partials/pagination.php");
+?>

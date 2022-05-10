@@ -7,17 +7,33 @@ $user_id = get_user_id();
 if ($user_id > 0) {
     $db = getDB();
 
+    $col = se($_GET, "col", "unit_price", false);
+    if (!in_array($col, ["total_price", "payment_method", "created"])) {
+        $col = "name";
+    }
+
     $order = se($_GET, "order", "asc", false);
     if (!in_array($order, ["asc", "desc"])) {
         $order = "asc";
     }
 
+    $date = se($_GET, "created", "", false);
+
     $base_query = "SELECT id, name, address, payment_method, total_price, created from Orders";
     $total_query = "SELECT count(1) as total FROM Orders";
-    $query = " WHERE user_id = :uid";
+    $query = " WHERE 1=1 and user_id = :uid";
 
     $per_page = 5;
     $params = [];
+    if (!empty($date)) {
+        $query .= " and name like :date";
+        $params[":date"] = "%$date%";
+    }
+    
+    if (!empty($col) && !empty($order)) {
+        $query .= " ORDER BY $col $order";
+    }
+
     $params[":uid"] = $user_id;
     paginate($total_query . $query, $params, $per_page);
 

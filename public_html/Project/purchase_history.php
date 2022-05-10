@@ -80,6 +80,35 @@ if ($user_id > 0) {
                 </div> 
             </div>
             <div class="col">
+            <div class="input-group">
+                <div class="input-group-text">Sort</div>
+                <select class="form-control bg-info" name="col" value="<?php se($col); ?>" data="took">
+                    <option value="total_price">Cost</option>
+                    <option value="payment_method">Payment Method</option>
+                    <option value="created">Date Ordered</option>
+                </select>
+                <script>
+                    //quick fix to ensure proper value is selected since
+                    //value setting only works after the options are defined and php has the value set prior
+                    document.forms[0].col.value = "<?php se($col); ?>";
+                </script>
+                <select class="form-control" name="order" value="<?php se($order); ?>">
+                    <option class="bg-white" value="asc">Up</option>
+                    <option class="bg-white" value="desc">Down</option>
+                </select>
+                <script data="this">
+                    //quick fix to ensure proper value is selected since
+                    //value setting only works after the options are defined and php has the value set prior
+                    document.forms[0].order.value = "<?php se($order); ?>";
+                    if (document.forms[0].order.value === "asc") {
+                        document.forms[0].order.className = "form-control bg-success";
+                    } else {
+                        document.forms[0].order.className = "form-control bg-danger";
+                    }
+                </script>
+            </div>
+        </div>
+            <div class="col">
                 <div class="input-group">
                     <input type="submit" class="btn btn-primary" value="Apply" />
                 </div>

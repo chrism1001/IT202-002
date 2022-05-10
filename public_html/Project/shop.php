@@ -8,7 +8,7 @@ $results = [];
 $db = getDB();
 
 $col = se($_GET, "col", "unit_price", false);
-if (!in_array($col, ["unit_price", "stock", "name", "created"])) {
+if (!in_array($col, ["unit_price", "stock", "name", "created", "avg_rating"])) {
     $col = "unit_price";
 }
 
@@ -19,7 +19,7 @@ if (!in_array($order, ["asc", "desc"])) {
 
 $name = se($_GET, "name", "", false);
 
-$base_query = "SELECT id, name, description, unit_price, stock FROM $TABLE_NAME";
+$base_query = "SELECT id, name, description, unit_price, stock, avg_rating FROM $TABLE_NAME";
 $total_query = "SELECT count(1) as total FROM $TABLE_NAME";
 $query = " WHERE 1=1 and stock > 0 and visibility = 1";
 
@@ -83,10 +83,11 @@ try {
             <div class="input-group">
                 <div class="input-group-text">Sort</div>
                 <select class="form-control bg-info" name="col" value="<?php se($col); ?>" data="took">
-                    <option value="cost">Cost</option>
+                    <option value="unit_price">Cost</option>
                     <option value="stock">Stock</option>
                     <option value="name">Name</option>
                     <option value="created">Created</option>
+                    <option value="avg_rating">Rating</option>
                 </select>
                 <script>
                     //quick fix to ensure proper value is selected since
@@ -122,6 +123,7 @@ try {
                     <div class="card-body">
                         <h5 class="card-title">Name: <?php se($item, "name"); ?></h5>
                         <p class="card-text">Description: <?php se($item, "description"); ?></p>
+                        <p class="card-text">Rating: <?php se($item, "avg_rating"); ?></p>
                     </div>
                     <div class="card-footer">
                         Cost: <?php se($item, "unit_price"); ?>

@@ -12,12 +12,57 @@ $results = [];
 
 if ($user_id > 0) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, user_id, address, payment_method, total_price, created FROM Orders limit 10");
+
+    $col = se($_GET, "col", "name", false);
+    if (!in_array($col, ["name", "total_price", "payment_method", "created"])) {
+        $col = "name";
+    }
+
+    $order = se($_GET, "order", "asc", false);
+    if (!in_array($order, ["asc", "desc"])) {
+        $order = "asc";
+    }
+
+    $date = se($_GET, "created", "", false);
+    $category = se($_GET, "category", "", false);
+
+    $base_query = "SELECT id, user_id, address, payment_method, total_price, created from Orders";
+    $total_query = "SELECT count(1) as total FROM Orders";
+    $query = "";
+
+    $per_page = 5;
+    $params = [];
+    if (!empty($date)) {
+        $query .= " and created like :date";
+        $params[":date"] = "%$date%";
+    }
+    if (!empty($category)) {
+        $query .= " and category like :category";
+        $params[":category"] = "%$category%";
+    }
+    
+    if (!empty($col) && !empty($order)) {
+        $query .= " ORDER BY $col $order";
+    }
+
+    paginate($total_query . $query, $params, $per_page);
+
+    $query .= " LIMIT :offset, :count";
+    $params[":offset"] = $offset;
+    $params[":count"] = $per_page;
+
+    $stmt = $db->prepare($base_query . $query);
+    foreach ($params as $key => $value) {
+        $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+        $stmt->bindValue($key, $value, $type);
+    }
+    $params = null;
+
     try {
-        $stmt->execute();
+        $stmt->execute($params);
         $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($r) {
-            $results += $r; 
+            $results += $r;
         }
     } catch (PDOException $e) {
         error_log(var_export($e, true));
@@ -55,3 +100,9 @@ if ($user_id > 0) {
         </table>
     <?php endif; ?>
 </div>
+
+<?php
+//note we need to go up 1 more directory
+require_once(__DIR__ . "/../../../partials/flash.php");
+require(__DIR__ . "/../../../partials/pagination.php");
+?>

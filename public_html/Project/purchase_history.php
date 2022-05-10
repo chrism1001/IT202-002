@@ -18,6 +18,7 @@ if ($user_id > 0) {
     }
 
     $date = se($_GET, "created", "", false);
+    $category = se($_GET, "category", "", false);
 
     $base_query = "SELECT id, name, address, payment_method, total_price, created from Orders";
     $total_query = "SELECT count(1) as total FROM Orders";
@@ -26,8 +27,12 @@ if ($user_id > 0) {
     $per_page = 5;
     $params = [];
     if (!empty($date)) {
-        $query .= " and name like :date";
+        $query .= " and created like :date";
         $params[":date"] = "%$date%";
+    }
+    if (!empty($category)) {
+        $query .= " and category like :category";
+        $params[":category"] = "%$category%";
     }
     
     if (!empty($col) && !empty($order)) {
@@ -67,6 +72,19 @@ if ($user_id > 0) {
     <?php if (count($results) == 0) : ?>
         <p>No Results to show</p>
     <?php else : ?>
+        <form class="row row-cols-auto g-3 align-items-center">
+            <div class="col">
+                <div class="input-group" data="i">
+                    <div class="input-group-text">Name</div>
+                    <input class="form-control" name="name" value="<?php se($date); ?>" />
+                </div> 
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <input type="submit" class="btn btn-primary" value="Apply" />
+                </div>
+            </div>
+        </form>
         <table class="table card-table">
             <?php foreach ($results as $index => $record) : ?>
                 <?php if ($index == 0) : ?>

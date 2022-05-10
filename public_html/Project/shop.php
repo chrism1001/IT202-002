@@ -83,11 +83,11 @@ try {
             <div class="input-group">
                 <div class="input-group-text">Sort</div>
                 <select class="form-control bg-info" name="col" value="<?php se($col); ?>" data="took">
-                    <option value="cost">Cost</option>
+                    <option value="unit_price">Cost</option>
                     <option value="stock">Stock</option>
                     <option value="name">Name</option>
                     <option value="created">Created</option>
-                    <option value="rating">Rating</option>
+                    <option value="avg_rating">Rating</option>
                 </select>
                 <script>
                     //quick fix to ensure proper value is selected since

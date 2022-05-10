@@ -23,11 +23,6 @@ try {
     flash("Error looking up record", "danger");
 } 
 
-// $avg_rating = 0;
-// foreach ($result as $key => $value) {
-//     $avg_rating = $value["avg_rating"];
-// }
-
 if (isset($_POST["rating"]) && isset($_POST["comment"])) {
     $rating = se($_POST, "rating", -1, false);
     $comment = se($_POST, "comment", "", false);
@@ -51,6 +46,34 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
         $stmt = $db->prepare("INSERT INTO Ratings (user_id, product_id, rating, comment) VALUES(:uid, :pid, :rating, :comment)");
         try {
             $stmt->execute([":uid" => $user_id, ":pid" => $id, ":rating" => $rating, ":comment" => $comment]);
+        } catch (Exception $e) {
+            error_log("Error inserting into orders table" . var_export($e, true));
+        }
+
+        $ratings = [];
+        $stmt = $db->prepare("SELECT rating FROM Ratings WHERE product_id = :pid");
+        try {
+            $stmt->execute([":pid" => $id]);
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($results) {
+                $ratings += $results;
+            }
+        } catch (PDOException $e) {
+            error_log(var_export($e, true));
+            flash("Error looking up record", "danger");
+        }
+
+        $curr_rating = 0;
+        foreach ($ratings as $key => $value) {
+            $curr_rating += $value["rating"];
+        }
+
+        $curr_rating += $rating;
+        $new_rating = $curr_rating / (sizeof($ratings) + 1);
+
+        $stmt = $db->prepare("UPDATE Products SET avg_rating = :r WHERE id = :pid");
+        try {
+            $stmt->execute([":r" => $new_rating, ":pid" => $id]);
         } catch (Exception $e) {
             error_log("Error inserting into orders table" . var_export($e, true));
         }

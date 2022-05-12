@@ -15,7 +15,7 @@ if (isset($_POST["itemName"])) {
         $num = (int)se($_POST, "itemName", -1, false);
         $base_query = "SELECT id, name, description, category, stock, unit_price, visibility from Products";
         $total_query = "SELECT count(1) as total FROM Products";
-        $query = " WHERE 1=1 and stock >= :s";
+        $query = " WHERE 1=1 and stock <= :s";
         $params = [];
         $params[":s"] = $num;
 
@@ -45,7 +45,7 @@ if (isset($_POST["itemName"])) {
         $name = se($_POST, "itemName", "", false);
         $base_query = "SELECT id, name, description, category, stock, unit_price, visibility from Products";
         $total_query = "SELECT count(1) as total from Products";
-        $query = " WHERE 1=1 name like :name";
+        $query = " WHERE 1=1 and name like :name";
 
         $params = [];
         $params[":name"] = "%$name%";

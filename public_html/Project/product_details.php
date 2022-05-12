@@ -40,6 +40,19 @@ if (isset($_POST["rating"]) && isset($_POST["comment"])) {
         flash("Comment cannot be empty");
         $has_error = true;
     }
+    $db = getDB();
+    $stmt = $db->prepare("SELECT order_id FROM OrderItems WHERE 1=1 and user_id = :uid and product_id = :pid");
+    try {
+        $stmt->execute([":uid" => $user_id, ":pid" => $id]);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($results) == 0) {
+            $has_error = true;
+            flash("You must purchase the item first before you can post a review.", "danger");
+        }
+    } catch (PDOException $e) {
+        error_log(var_export($e, true));
+        flash("Error looking up record", "danger");
+    }
 
     if (!$has_error) {
         $db = getDB();

@@ -3,6 +3,7 @@
 ## Github Link: [https://github.com/chrism1001/IT202-002/tree/prod/public_html/Project](https://github.com/chrism1001/IT202-002/tree/prod/public_html/Project)
 ## Project Board Link: [https://github.com/chrism1001/IT202-002/projects/1](https://github.com/chrism1001/IT202-002/projects/1)
 ## Website Link: [https://cm43-prod.herokuapp.com/Project](https://cm43-prod.herokuapp.com/Project)
+## Project Demo: [https://www.youtube.com/watch?v=vO9m4kP3y_g&ab_channel=ChristopherMejia](https://www.youtube.com/watch?v=vO9m4kP3y_g&ab_channel=ChristopherMejia)
 ## Your Name: Christopher Mejia
 
 <!-- Line item / Feature template (use this for each bullet point) -- DO NOT DELETE THIS SECTION

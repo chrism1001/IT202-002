@@ -80,20 +80,41 @@
       - [Milestone 2](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone2.md)
       - [https://cm43-prod.herokuapp.com/Project/cart.php](https://cm43-prod.herokuapp.com/Project/cart.php)
 - Milestone 3
-  - [X] \(04/29/2022 of completion) User will be able to purchase items in their Cart
+    - [X] \(04/29/2022 of completion) User will be able to purchase items in their Cart
       - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
       - [https://cm43-prod.herokuapp.com/Project/checkout_form.php](https://cm43-prod.herokuapp.com/Project/checkout_form.php)
-  - [X] \(04/29/2022 of completion) Order Confirmation Page
+    - [X] \(04/29/2022 of completion) Order Confirmation Page
       - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
       - [https://cm43-prod.herokuapp.com/Project/confirmation_page.php](https://cm43-prod.herokuapp.com/Project/confirmation_page.php)
-  - [X] \(04/29/2022 of completion) User will be able to see their Purchase History
+    - [X] \(04/29/2022 of completion) User will be able to see their Purchase History
       - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
       - [https://cm43-prod.herokuapp.com/Project/purchase_history.php](https://cm43-prod.herokuapp.com/Project/purchase_history.php)
-  - [X] \(04/29/2022 of completion) Store Owner will be able to see all Purchase History
+    - [X] \(04/29/2022 of completion) Store Owner will be able to see all Purchase History
       - [Milestone 3](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone3.md)
       - [https://cm43-dev.herokuapp.com/Project/admin/all_purchase_history.php](https://cm43-dev.herokuapp.com/Project/admin/all_purchase_history.php)
 - Milestone 4
-  - (duplicate template here for Milestone 1 features)
+    - [X] \(05/08/2022 of completion) User can set their profile to be public or private (will need another column in Users table)
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/profile.php?edit=true](https://cm43-prod.herokuapp.com/Project/profile.php?edit=true)
+      - [https://cm43-prod.herokuapp.com/Project/profile.php?id=25](https://cm43-prod.herokuapp.com/Project/profile.php?id=25)
+    - [X] \(05/11/2022 of completion) User will be able to rate a product they purchased
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/product_details.php?id=2](https://cm43-prod.herokuapp.com/Project/product_details.php?id=2)
+    - [ ] \(mm/dd/yyyy of completion) User’s Purchase History Changes
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/purchase_history.php](https://cm43-prod.herokuapp.com/Project/purchase_history.php)
+    - [ ] \(mm/dd/yyyy of completion) Store Owner Purchase History Changes
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/admin/all_purchase_history.php](https://cm43-prod.herokuapp.com/Project/admin/all_purchase_history.php)
+    - [X] \(05/08/2022 of completion) Add pagination to Shop Page (and any other product lists not yet mentioned)
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/shop.php](https://cm43-prod.herokuapp.com/Project/shop.php)
+    - [X] \(05/11/2022 of completion) Store Owner will be able to see all products out of stock
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/admin/list_products.php](https://cm43-prod.herokuapp.com/Project/admin/list_products.php)
+    - [X] \(05/08/2022 of completion) User can sort products by average rating on the Shop Page
+      - [Milestone 4](https://github.com/chrism1001/IT202-002/blob/prod/public_html/Project/milestone4.md)
+      - [https://cm43-prod.herokuapp.com/Project/shop.php?name=&col=avg_rating&order=desc](https://cm43-prod.herokuapp.com/Project/shop.php?name=&col=avg_rating&order=desc)
 ### Intructions
 #### Don't delete this
 1. Pick one project type

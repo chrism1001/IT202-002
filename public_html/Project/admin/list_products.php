@@ -4,22 +4,74 @@ $TABLE_NAME = "Products";
 
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
-    die(header("Location: $BASE_PATH" . "home.php"));
+    redirect("shop.php");
 }
 
 $results = [];
 if (isset($_POST["itemName"])) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, name, description, category, stock, unit_price, visibility from $TABLE_NAME WHERE name like :name limit 50");
-    try {
-        $stmt->execute([":name" => "%" . $_POST["itemName"] . "%"]);
-        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($r) {
-            $results = $r;
+ 
+    if (is_numeric(se($_POST, "itemName", "", false))) {
+        $num = (int)se($_POST, "itemName", -1, false);
+        $base_query = "SELECT id, name, description, category, stock, unit_price, visibility from Products";
+        $total_query = "SELECT count(1) as total FROM Products";
+        $query = " WHERE 1=1 and stock <= :s";
+        $params = [];
+        $params[":s"] = $num;
+
+        $per_page = 5;
+        paginate($total_query . $query, $params, $per_page);
+
+        $query .= " LIMIT :offset, :count";
+        $params[":offset"] = $offset;
+        $params[":count"] = $per_page;
+
+        $stmt = $db->prepare($base_query . $query);
+        foreach ($params as $key => $value) {
+            $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue($key, $value, $type);
         }
-    } catch (PDOException $e) {
-        error_log(var_export($e, true));
-        flash("Error fetching records", "danger");
+        $params = null;
+        try {
+            $stmt->execute($params); //dynamically populated params to bind
+            $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($r) {
+                $results = $r;
+            }
+        } catch (PDOException $e) {
+            flash("<pre>" . var_export($e, true) . "</pre>");
+        }
+    } else {
+        $name = se($_POST, "itemName", "", false);
+        $base_query = "SELECT id, name, description, category, stock, unit_price, visibility from Products";
+        $total_query = "SELECT count(1) as total from Products";
+        $query = " WHERE 1=1 and name like :name";
+
+        $params = [];
+        $params[":name"] = "%$name%";
+
+        $per_page = 5;
+        paginate($total_query . $query, $params, $per_page);
+
+        $query .= " LIMIT :offset, :count";
+        $params[":offset"] = $offset;
+        $params[":count"] = $per_page;
+
+        $stmt = $db->prepare($base_query . $query);
+        foreach ($params as $key => $value) {
+            $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue($key, $value, $type);
+        }
+        $params = null;
+        try {
+            $stmt->execute($params); //dynamically populated params to bind
+            $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($r) {
+                $results = $r;
+            }
+        } catch (PDOException $e) {
+            flash("<pre>" . var_export($e, true) . "</pre>");
+        }
     }
 }
 ?>
@@ -60,5 +112,6 @@ if (isset($_POST["itemName"])) {
     <?php endif; ?>
 </div>
 <?php
-//note we need to go up 1 more directory
-require_once(__DIR__ . "/../../../partials/flash.php");
+require(__DIR__ . "/../../../partials/flash.php");
+require(__DIR__ . "/../../../partials/pagination.php");
+?>
